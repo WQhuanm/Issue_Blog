@@ -3,30 +3,109 @@ title: SpringBoot项目配置文件模板
 date: 2025-01-26
 categories: 
     - SpringBoot
-cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202501262318741.jpeg
+cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203.jpeg
 ---
 
-### 一，缓存穿透
-> 缓存穿透是指客户端请求的数据在缓存中和数据库中都不存在，这样缓存永远不会生效，这些请求都会打到数据库。
+### 版本要求
+1. jdk17
+2. springboot:3.2.12
+3. Maven:3.6.3以上
 
-把不存在的数据存入redis，value为null，短过期时间
-缺点：可能造成短期的不一致
+### 配置文件
+#### 1. pom.xml
+``` xml
+    <!--        spring-boot-starter-parent声明了spring boot的各个依赖及其版本。子项目直接继承它-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.12</version>
+    </parent>
 
-### 二，缓存雪崩
-> 缓存雪崩是指在同一时段大量的缓存key同时失效或者Redis服务宕机，导致大量请求到达数据库，带来巨大压力。
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--        启动热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+        <!--mysql驱动（8.0.31及之后)-->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+        </dependency>
+        <!--mybatisPlus依赖-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <version>3.5.10.1</version>
+        </dependency>
+        <!--        redis依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--连接池依赖-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
 
-给不同的Key的TTL添加随机值
+        <!-- 添加Junit依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+```
 
-### 三，缓存击穿（热点key问题）
-> 一个被高并发访问并且缓存重建业务较复杂的key突然失效了，无数的请求访问会在瞬间给数据库带来巨大的冲击。
+#### 2. 启动器 Application.java
+``` java
+@SpringBootApplication
+@MapperScan("com.wqhuanm.springbootLearn.mapper")
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
 
-#### 1. 互斥锁
-获取不到缓存则尝试获取互斥锁
-- 成功则查询数据库数据并写入缓存
-- 失败则休眠后重试
+#### 3. application.yml
+```yml
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/wq_learn?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      host: 192.168.63.130
+      port: 6379
+      password: 123456
+      lettuce:
+        pool:
+          max-active: 10
+          max-idle: 10
+          min-idle: 1
+          time-between-eviction-runs: 10s
+  jackson:
+    default-property-inclusion: non_null # JSON处理时忽略非空字段
 
-#### 2. 逻辑过期
-数据在缓存不再设置TTL，但是记录逻辑过期时间
-查询缓存时，如果数据已经过期，尝试获取互斥锁，成功则另开一个线程去更新数据
-在数据更新完毕前获取到的数据均为脏数据
+mybatis-plus:
+  configuration:
+    # 日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+```
 
