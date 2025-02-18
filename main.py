@@ -254,7 +254,6 @@ def save_issue(issue, me, dir_name=BACKUP_DIR):
     #the cover have default value,if you want to customize,make sure the issue body's first line is ![](your png'link) or change the following code 
     with open(md_name, "w") as f:
         f.write("---\n")
-        print(issue.created_at)
         f.write(f"title: {issue.title}\n")
         f.write(f"date: {issue.created_at}\n")
         if issue.labels:
@@ -296,7 +295,6 @@ if __name__ == "__main__":
     if not os.path.exists(BACKUP_DIR):
         os.mkdir(BACKUP_DIR)
     parser = argparse.ArgumentParser()
-    
     parser.add_argument("github_token", help="github_token")
     parser.add_argument("repo_name", help="repo_name")
     parser.add_argument(
