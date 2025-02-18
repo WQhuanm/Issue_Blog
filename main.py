@@ -255,7 +255,7 @@ def save_issue(issue, me, dir_name=BACKUP_DIR):
     with open(md_name, "w") as f:
         f.write("---\n")
         f.write(f"title: {issue.title}\n")
-        f.write(f"date: {format_time(issue.created_at)}\n")
+        f.write(f"date: {issue.created_at.strftime("%Y-%m-%d %H:%M:%S")}\n")
         if issue.labels:
             f.write("categories: \n")
             for label in issue.labels:
