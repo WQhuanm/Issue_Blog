@@ -245,6 +245,8 @@ def save_issue(issue, me, dir_name=BACKUP_DIR):
     # title: issue.title 
     # date: issue.create_date
     # categories:
+    #     - issue.milestone
+    # tags:
     #     - issue.label
     # cover: 
     # ---
@@ -256,8 +258,11 @@ def save_issue(issue, me, dir_name=BACKUP_DIR):
         f.write("---\n")
         f.write(f"title: {issue.title}\n")
         f.write(f"date: {issue.created_at}\n")
-        if issue.labels:
+        if issue.milestone:
             f.write("categories: \n")
+            f.write(f"    - {issue.milestone.title}\n")
+        if issue.labels:
+            f.write("tags: \n")
             for label in issue.labels:
                 f.write(f"    - {label.name}\n")
         original_body = issue.body
@@ -302,13 +307,5 @@ if __name__ == "__main__":
     )
     options = parser.parse_args()
     main(options.github_token, options.repo_name, options.issue_number)
-
-
-
-
-
-
-
-
 
 
