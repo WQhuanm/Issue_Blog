@@ -5,15 +5,17 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 - ["让写blog的人专注于blog，实现全自动issue_blog，use：Issue + Hexo + Github Action"](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 - [About me](https://github.com/WQhuanm/Issue_Blog/issues/1)--2024-12-22
 ## 最近更新
+- [Mybatis编码随记](https://github.com/WQhuanm/Issue_Blog/issues/6)--2025-02-19
 - [SpringBoot项目配置文件模板](https://github.com/WQhuanm/Issue_Blog/issues/5)--2025-01-26
 - [redis三大主流问题及其解决方案](https://github.com/WQhuanm/Issue_Blog/issues/4)--2025-01-26
 - [登录认证的几种基本方式](https://github.com/WQhuanm/Issue_Blog/issues/3)--2025-01-26
 - ["让写blog的人专注于blog，实现全自动issue_blog，use：Issue + Hexo + Github Action"](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
-- [About me](https://github.com/WQhuanm/Issue_Blog/issues/1)--2024-12-22
 ## GitHub
 - ["让写blog的人专注于blog，实现全自动issue_blog，use：Issue + Hexo + Github Action"](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 ## Java
 - [登录认证的几种基本方式](https://github.com/WQhuanm/Issue_Blog/issues/3)--2025-01-26
+## MyBatis
+- [Mybatis编码随记](https://github.com/WQhuanm/Issue_Blog/issues/6)--2025-02-19
 ## Redis
 - [redis三大主流问题及其解决方案](https://github.com/WQhuanm/Issue_Blog/issues/4)--2025-01-26
 ## SpringBoot
