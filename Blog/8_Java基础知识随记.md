@@ -5,7 +5,7 @@ categories:
     - Java
 tags: 
     - Java
-cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910.png
+cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407.png
 ---
 
 1. Java对象存储在堆中
@@ -44,7 +44,24 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910
         1. LinkedHashMap 继承自 HashMap，并在 HashMap 基础上维护一条双向链表，支持遍历时会按照插入顺序有序进行迭代。
         1. ConcurrentHashMap线程安全（Synchronized 锁加 CAS 的机制），底层是数组+链表/红黑树
 
-
-
+1. 单例模式（确保一个类只有一个实例）
+    双重检验锁方式实现
+    ```java
+    public class A {
+        private volatile static A uniqueInstance;//全局唯一实例
+        private A() {}
+        public  static A getUniqueInstance() {//获取实例
+            if (uniqueInstance == null) {//先判断对象是否已经实例过，没有实例化过才进入加锁代码
+                synchronized (Singleton.class) {//类对象加锁
+                    if (uniqueInstance == null) {
+                        uniqueInstance = new A();
+                    }
+                }
+            }
+            return uniqueInstance;
+        }
+    }
+    ```
 
     
+
