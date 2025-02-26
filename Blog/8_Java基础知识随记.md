@@ -48,7 +48,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
     双重检验锁方式实现
     ```java
     public class A {
-        private volatile static A uniqueInstance;//全局唯一实例
+        private volatile static A uniqueInstance;//全局唯一实例，用volatile修饰，保证线程安全
         private A() {}
         public  static A getUniqueInstance() {//获取实例
             if (uniqueInstance == null) {//先判断对象是否已经实例过，没有实例化过才进入加锁代码
@@ -62,6 +62,11 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
         }
     }
     ```
+    uniqueInstance = new Singleton(); 这段代码其实是分为三步执行：
+    1，为 uniqueInstance 分配内存空间；2，初始化uniqueInstance；3，将 uniqueInstance 指向分配的内存地址
+    如果不用volatile修饰，执行顺序可能变为1->3->2，那么其他线程获取实例时可能获取一个没有初始化的null实例
+
+
 
     
 
