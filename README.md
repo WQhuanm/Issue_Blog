@@ -5,17 +5,19 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 - ["让写blog的人专注于blog，实现全自动issue_blog，use：Issue + Hexo + Github Action"](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 - [About me](https://github.com/WQhuanm/Issue_Blog/issues/1)--2024-12-22
 ## 最近更新
+- [终于要开始面试挑战了吗......有点意思😊](https://github.com/WQhuanm/Issue_Blog/issues/11)--2025-03-06
 - [Redis学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/10)--2025-03-03
 - [Java并发知识随记](https://github.com/WQhuanm/Issue_Blog/issues/9)--2025-02-27
 - [Java基础知识随记](https://github.com/WQhuanm/Issue_Blog/issues/8)--2025-02-26
 - [MySQL学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/7)--2025-02-21
-- [Mybatis编码随记](https://github.com/WQhuanm/Issue_Blog/issues/6)--2025-02-19
 ## GitHub
 - ["让写blog的人专注于blog，实现全自动issue_blog，use：Issue + Hexo + Github Action"](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 ## Java
 - [Java并发知识随记](https://github.com/WQhuanm/Issue_Blog/issues/9)--2025-02-27
 - [Java基础知识随记](https://github.com/WQhuanm/Issue_Blog/issues/8)--2025-02-26
 - [登录认证的几种基本方式](https://github.com/WQhuanm/Issue_Blog/issues/3)--2025-01-26
+## Life
+- [终于要开始面试挑战了吗......有点意思😊](https://github.com/WQhuanm/Issue_Blog/issues/11)--2025-03-06
 ## MyBatis
 - [Mybatis编码随记](https://github.com/WQhuanm/Issue_Blog/issues/6)--2025-02-19
 ## MySQL
