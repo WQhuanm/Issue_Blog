@@ -82,10 +82,14 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
         + ThreadLocal有个静态内部类ThreadLocalMap（类似hashmap），以ThreadLocal为Key，Object为value，用Entry存取。一个线程每创建一个ThreadLocal可以存取一个变量副本
         + Thread有个ThreadLocalMap属性(初始为null)，ThreadLocal存入变量副本，是存入到当前Thread的ThreadLocalMap里面
     1. 内存泄漏
-        + ThreadLocalMap 中的 key 是 ThreadLocal 的弱引用 (WeakReference<ThreadLocal<?>>)，当ThreadLocal实例不再被任何强引用指向，垃圾回收器会在下次GC时回收该实例，导致 ThreadLocalMap 中对应的 key 变为 null。
+        + ThreadLocalMap 中的 key 是 ThreadLocal 的弱引用 (WeakReference<ThreadLocal<?>>)，当ThreadLocal实例不再被任何强引用指向，垃圾回收器会在下次GC时回收该实例，导致 ThreadLocalMap 中对应的 key 变为 null。（若使用强引用，只要线程不死，ThreadLocla就会一直存在）
         + ThreadLocalMap 中的 value 是强引用。 即使 key 被回收（变为 null），value 仍然存在于 ThreadLocalMap 中，被强引用，不会被回收。
         + 当ThreadLocal 实例不再被强引用,且线程持续存活（线程池使线程复用等），使ThreadLocalMap长期存在，则会导致 key 为 null 的 entry 无法被垃圾回收，就会造成内存泄漏。
         + 使用完 ThreadLocal 后，调用 remove() 方法显式删除entry是避免内存泄漏的不错方法
+        + ThreadLocalMap自清理的方式：
+            1. 探测式清理（expungeStaleEntry()）：从当前节点开始遍历数组，key==null的将entry置为null
+            2. 启发式清理（cleanSomeSlots()）：从当前节点开始，进行do-while循环检查清理过期key，结束条件是连续log（数组长度）次未发现过期key就跳出循环
+            1. 执行set，get，rehash，remove时就会触发上述清理流程
 
 1. 线程池
     1. Executor 框架（包括了线程池的管理，还提供了线程工厂、队列以及拒绝策略等），由三大部分组成
