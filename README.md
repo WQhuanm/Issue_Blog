@@ -5,11 +5,13 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 - ["让写blog的人专注于blog，实现全自动issue_blog，use：Issue + Hexo + Github Action"](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 - [About me](https://github.com/WQhuanm/Issue_Blog/issues/1)--2024-12-22
 ## 最近更新
+- [计算机基础学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/14)--2025-03-12
 - [杭州视言一面（3.11）](https://github.com/WQhuanm/Issue_Blog/issues/13)--2025-03-11
 - [JVM(HotSpot虚拟机)学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/12)--2025-03-09
 - [终于要开始面试挑战了吗......有点意思😊](https://github.com/WQhuanm/Issue_Blog/issues/11)--2025-03-06
 - [Redis学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/10)--2025-03-03
-- [Java并发知识随记](https://github.com/WQhuanm/Issue_Blog/issues/9)--2025-02-27
+## CS基础
+- [计算机基础学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/14)--2025-03-12
 ## GitHub
 - ["让写blog的人专注于blog，实现全自动issue_blog，use：Issue + Hexo + Github Action"](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 ## Java
