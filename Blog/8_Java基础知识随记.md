@@ -28,6 +28,10 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
     1. 除了RuntimeException及其子类以外，其他的Exception类及其子类都属于受检查异常 。如IO异常
 
 1. Java 集合
+    1. 数组和链表的区别
+        + 数组访问速度快，但插入删除慢，且内存必须连续，可能存在空间浪费或不足无法扩展
+        + 链表插入速度快，可以动态开辟空间，适合频繁增删改，但是访问速度慢（内存分配、垃圾回收等无需随机访问的经常使用）
+        + 循环链表的应用：循环队列（体现公平性、轮询）
     1. ArrayList基于Object[]实现，扩容机制是每次扩容为原来的1.5倍左右
     1. HashSet、LinkedHashSet、TreeSet
         HashSet 的底层数据结构是HashMap。读取顺序是按hash值排序
