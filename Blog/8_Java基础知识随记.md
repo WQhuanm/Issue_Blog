@@ -33,14 +33,25 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
         HashSet 的底层数据结构是HashMap。读取顺序是按hash值排序
         LinkedHashSet 的底层数据结构是LinkedHashMap，链表维护元素的插入顺序，能按照添加顺序遍历输出
         TreeSet 的底层数据结构是红黑树
-    1. HashMap
-        1. HashMap 由 数组+链表/红黑树 组成的（链表长>7且数组长度>63，转换为红黑树）
-        总是使用 2 的幂作为哈希表的大小。HashMap 默认的初始化大小为 16。之后每次扩充，容量变为原来的 2 倍。
-        1. HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash 值，然后通过 (n - 1) & hash 判断当前元素存放的位置 
-        如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖；不相同就遍历链表插入链表尾部。
-        1. loadFactor 负载因子控制数组存放数据的疏密程度。越趋近于 1，那么 数组越密，会让链表的长度增加；越趋近于 0，数组越稀疏。
-            + 默认负载因子为0.75f。当元素超过了 n*loadFactor就需要将n进行扩容。
-            + 扩容需要重新 hash 分配，并且会遍历 hash 表中所有的元素，非常耗时。
+    1. HashMap单独坐一桌：
+        1. 由数组+链表/红黑树 组成的（链表长>7且数组长度>63，转换为红黑树）。
+            + 元素是Node<K,V>,红黑树的结点TreeNode继承自Node，使得可以用迭代器遍历map所有结点
+            + 扩容后，会对链表/红黑树的拆分，根据他们二进制高位（扩容新增那一位）是否为1，会分成2条链表（各自存放到新的map位置），链表长度过长则直接树化
+        1. 总是使用 2 的幂作为哈希表的大小。HashMap 默认的初始化大小为 16。之后每次扩充，容量变为原来的 2 倍。
+        1. hash()：
+            + (h = key.hashCode()) ^ (h >>> 16)，右移一半来异或得到hash值
+            + 通过 (n - 1) & hash 判断当前元素存放的位置
+            + 如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖；不相同就遍历链表插入链表尾部。
+            + jdk8引入了红黑树，不再有rehash操作来保证扩容后hash的随机性
+        1. 核心字段：initialCapacity(初始容量)、loadFactor(负载因子(可以大于1))、threshold（扩容阈值）
+            + 扩容阈值一般等于Capacity*loadFactor，如果不超过最大阈值的话。当map元素数量>threshold，执行resize()扩容
+            + loadFactor 负载因子控制数组存放数据的疏密程度，默认负载因子为0.75f。
+        1. 线程不安全存在的一些问题：
+            + 扩容会死循环/死锁（JDK7）：因为采用头插法，导致链表成为环形链表
+                ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503141622646.png)
+            + 并发下put元素消失
+            + get，put并发导致get为null，因为put导致扩容改位置了
+    1. 其他Map
         1. LinkedHashMap 继承自 HashMap，并在 HashMap 基础上维护一条双向链表，支持遍历时会按照插入顺序有序进行迭代。
         1. ConcurrentHashMap线程安全（Synchronized 锁加 CAS 的机制），底层是数组+链表/红黑树
 
