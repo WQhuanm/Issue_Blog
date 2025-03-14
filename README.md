@@ -5,11 +5,11 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 - ["让写blog的人专注于blog，实现全自动issue_blog，use：Issue + Hexo + Github Action"](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 - [About me](https://github.com/WQhuanm/Issue_Blog/issues/1)--2024-12-22
 ## 最近更新
+- [字节国际电商一面(3.12)  --凉](https://github.com/WQhuanm/Issue_Blog/issues/16)--2025-03-14
 - [下次要是面试官还拷打我红黑树的实现，我就要掏出这个了！！！](https://github.com/WQhuanm/Issue_Blog/issues/15)--2025-03-13
 - [计算机基础学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/14)--2025-03-12
 - [杭州视言一面（3.11）](https://github.com/WQhuanm/Issue_Blog/issues/13)--2025-03-11
 - [JVM(HotSpot虚拟机)学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/12)--2025-03-09
-- [终于要开始面试挑战了吗......有点意思😊](https://github.com/WQhuanm/Issue_Blog/issues/11)--2025-03-06
 ## CS基础
 - [下次要是面试官还拷打我红黑树的实现，我就要掏出这个了！！！](https://github.com/WQhuanm/Issue_Blog/issues/15)--2025-03-13
 - [计算机基础学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/14)--2025-03-12
@@ -33,4 +33,5 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 ## SpringBoot
 - [SpringBoot项目配置文件模板](https://github.com/WQhuanm/Issue_Blog/issues/5)--2025-01-26
 ## 面经
+- [字节国际电商一面(3.12)  --凉](https://github.com/WQhuanm/Issue_Blog/issues/16)--2025-03-14
 - [杭州视言一面（3.11）](https://github.com/WQhuanm/Issue_Blog/issues/13)--2025-03-11
