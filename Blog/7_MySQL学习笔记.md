@@ -8,6 +8,21 @@ tags:
 cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502211226091.png
 ---
 
+### MySQL的执行原理
+#### 1. MySQL的基本架构
+![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503142020245.png)
++ MySQL 可以分为 Server 层和存储引擎层两部分
+    + 存储引擎层负责数据的存储和提取
+    + server层：所有跨存储引擎的功能都在此实现，比如存储过程、触发器、视图、内置函数等。
+
+注：查询缓存板块弊大于利，因为许多是无效缓存。8.0之后已经删除
+#### 2. SQL请求流程
+1. 连接器：拦截器与客户端建立连接，权限验证（默认为长连接，可以接受多个请求）
+1. 分析器：对SQL语句词法分析，语法分析，检查SQL语句执行权限
+1. 优化器：优化SQL语句，分析索引使用
+1. 执行器：打开目标表，从存储引擎获取所有数据后响应给客户端
+
+
 ### 日志系统
 + 默认引擎InnoDB有专属日志：redo log（重做日志），具备crash-safe 能力
 + server层也有自己的日志：binlog（归档日志）。
@@ -51,8 +66,16 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502211226091
 #### 1. 索引是在存储引擎层实现的，InnoDB 使用了 B+ 树索引模型
 + 只有叶子结点存数据，叶子结点使用链指针连成链表。能够很好地配合磁盘的读写特性，减少单次查询的磁盘访问次数。（N叉树，减少树高）
 + 树的每个结点存储数据是页，内部结点存取的是索引字段，所以索引字段越小，则一个内部结点可以有越多儿子，加快查询速度
+    ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502201132435.png)
++ innodb的B+树分裂策略
+    + 每个索引页面维护了一个上次插入的位置，以及上次的插入是递增/递减的标识
+        1. 对于新插入的数据，如果不满足递增/递减的约束，采用传统的50%分裂策略，把50%的数据移入新的一页
+        1. 否则，采用优化策略，原本满的页数据保留。对于新插入的递增/递减数据，如果相邻页可以存放数据，并入，否则，将其单独放入新页（减少了空间利用率低的问题）
+        ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503141917137.png)
+        + 并入策略是为了避免下图这种BUG使得空间利用率更低
+        ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503141919125.png)
 
-![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502201132435.png)
+
 #### 2. 索引类型分为主键索引和非主键索引。
 + 主键索引的叶子节点存的是整行数据。主键索引也被称为聚簇索引（clustered index）。
 主键查询只需搜索主键索引树
@@ -180,6 +203,14 @@ A使用全表扫描，每次读入数据到join buffer供B配（显然，join bu
 #### 4. 慢查询优化策略
 1. 索引优化：索引合适，对查询条件发挥作用
 1. 优化数据库结构：将字段很多的表分解成多个表，建立中间表（将大表间的联合查询改为中间表（临时表，小表）与大表的联合查询
+
+#### 5. Limit 1000000,20 的优化
+> 分页的问题，limit是把offset+target数据全部查出来后再丢弃offset数据，查询数据每行都回表，性能降低
+低效率SQL：SELECT * FROM 表 a,  where 条件 LIMIT 100000,20;
++ 延迟关联（本质是索引覆盖）
+    SQL更改为：SELECT a.* FROM 表 1 a, (select id from 表 1 where 条件 LIMIT 100000,20 ) b where a.id=b.id
+    1. 子查询在利用索引的同时，只查询符号条件的id，无需回表，效率高 
+    1. 查出来的数据是小表 join 原来的大表a，对于小表的每个id，直接从a表的主键索引拿到对应的行，只有目标的20行使用了主键索引
 
 
 ### Memory引擎（内存表）
