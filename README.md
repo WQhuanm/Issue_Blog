@@ -5,11 +5,11 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 - ["让写blog的人专注于blog，实现全自动issue_blog，use：Issue + Hexo + Github Action"](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 - [About me](https://github.com/WQhuanm/Issue_Blog/issues/1)--2024-12-22
 ## 最近更新
+- [MySQL基础知识随记](https://github.com/WQhuanm/Issue_Blog/issues/18)--2025-03-15
 - [笔试、笔试、笔试/(ㄒoㄒ)/~~](https://github.com/WQhuanm/Issue_Blog/issues/17)--2025-03-15
 - [字节国际电商一面(3.12)  --凉](https://github.com/WQhuanm/Issue_Blog/issues/16)--2025-03-14
 - [下次要是面试官还拷打我红黑树的实现，我就要掏出这个了！！！](https://github.com/WQhuanm/Issue_Blog/issues/15)--2025-03-13
 - [计算机基础学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/14)--2025-03-12
-- [杭州视言一面（3.11）](https://github.com/WQhuanm/Issue_Blog/issues/13)--2025-03-11
 ## CS基础
 - [下次要是面试官还拷打我红黑树的实现，我就要掏出这个了！！！](https://github.com/WQhuanm/Issue_Blog/issues/15)--2025-03-13
 - [计算机基础学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/14)--2025-03-12
@@ -27,6 +27,7 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 ## MyBatis
 - [Mybatis编码随记](https://github.com/WQhuanm/Issue_Blog/issues/6)--2025-02-19
 ## MySQL
+- [MySQL基础知识随记](https://github.com/WQhuanm/Issue_Blog/issues/18)--2025-03-15
 - [MySQL学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/7)--2025-02-21
 ## Redis
 - [Redis学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/10)--2025-03-03
