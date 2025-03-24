@@ -98,7 +98,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
 
 #### 6. 垃圾收集器
 1. Serial（串行）收集器
-    + 单线程，且在进行GC时候=必须暂停其他所有的工作线程（ "Stop The World" ），直到它收集结束。
+    + 单线程，且在进行GC时候必须暂停其他所有的工作线程（ "Stop The World" ），直到它收集结束。
     + 新生代采用标记-复制算法，老年代采用标记-整理算法。
 1. ParNew 收集器（Server 模式下的虚拟机的首要选择）
     + Serial 收集器的多线程版本
