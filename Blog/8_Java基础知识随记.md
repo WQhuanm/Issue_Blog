@@ -47,6 +47,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
         + 通过 (n - 1) & hash 判断当前元素存放的位置
         + 如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖；不相同就遍历链表插入链表尾部。
         + jdk8引入了红黑树，不再有rehash操作来保证扩容后hash的随机性
+        + 红黑树的内部排序基于System.identityHashCode()：依据对象初始内存地址计算的一个哈希值（保证了该值不会因为对象内存地址改变而改变）
     1. 核心字段：initialCapacity(初始容量)、loadFactor(负载因子(可以大于1))、threshold（扩容阈值）
         + 扩容阈值一般等于Capacity*loadFactor，如果不超过最大阈值的话。当map元素数量>threshold，执行resize()扩容
         + loadFactor 负载因子控制数组存放数据的疏密程度，默认负载因子为0.75f。
