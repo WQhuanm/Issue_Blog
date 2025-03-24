@@ -48,7 +48,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
         ``` java
         public UserService$$EnhancerBySpringCGLIB extends UserService {//CGLIB生成的代理类
             UserService target;//目标类
-            MyAspect aspect;//@Aspect修饰的代理类（定义了如何增强目标类）
+            MyAspect aspect;//@Aspect修饰的切面类（定义了如何增强目标类）
 
             public UserService$$EnhancerBySpringCGLIB() {
                 //此处未使用super()方法
@@ -113,8 +113,8 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
 #### 3. 事务(@Transactional（声明式事务）)
 1. 事务传播行为
     + TransactionDefinition.PROPAGATION_REQUIRED（默认）：如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。
-    + TransactionDefinition.PROPAGATION_REQUIRES_NEW：创建一个新的事务，如果当前存在事务，则把当前事务挂起。
-    + TransactionDefinition.PROPAGATION_NESTED：如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行
+    + TransactionDefinition.PROPAGATION_REQUIRES_NEW：创建一个新的事务，如果当前存在事务，则把当前事务挂起。（内部事务提交或回滚不影响外部事务。）
+    + TransactionDefinition.PROPAGATION_NESTED：如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行（内部事务异常默认会传播到外部事务，导致整体回滚。）
 
 1. 回滚策略
     + 默认回滚策略是只有在遇到RuntimeException / Error时才会回滚事务，而不会回滚 Checked Exception（受检查异常）
