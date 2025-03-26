@@ -26,6 +26,10 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
 1. 异常(Exception) :程序本身可以处理的异常，可以通过 catch 来进行捕获。
     1. 分为 Checked Exception (受检查异常，必须处理) 和 Unchecked Exception (不受检查异常，即使不处理不受检查异常也可以正常通过编译)。
     1. 除了RuntimeException及其子类以外，其他的Exception类及其子类都属于受检查异常 。如IO异常
+    1. 静态代码块的异常
+        + 原则上不允许静态代码块出现异常，如果真的出现，应该直接catch处理掉
+        + 静态代码块是在类加载的时候就执行了，而执行的过程中，如果出现错误，那么这个类就初始化失败。
+        + 当类初始化失败时，任何使用该类的代码都可能抛出 ExceptionInInitializerError。
 
 ### 2. Java 集合
 1. 数组和链表的区别
