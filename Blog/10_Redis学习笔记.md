@@ -95,4 +95,6 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202501262318741
             1. 提前预热，并让特定场景key在场景结束前不过期
             
 
-
+1. 底层数据
+    1. redis-zset：使用跳表实现
+    ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503262038882.png)
