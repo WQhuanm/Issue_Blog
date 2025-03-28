@@ -177,8 +177,8 @@ change buffer 是可以持久化的数据，在内存中有拷贝，也会被写
     + 这种方法保证了一定的内存命中率，防止全表扫描等大量冷数据涌入内存影响命中率
        
 
-### SQL语句原理解析
-#### 1. COUNT(*)
+### SQL语句解析
+#### 1. COUNT(*)性能
 由于innodb的事务是通过多版本并发控制（MVCC,Multi-Version Concurrency Control）实现，每个事务当前的记录在并发下不一定相同，所以无法单纯记录表的行数，所以必须通过遍历整颗索引树（选择最小那颗）来计数，所以在大表中count效率不佳。
 + 可以通过建立一张计数表的方式，来为每张表维护count值（利用事务特性解决该问题）
 + count效率比较（低到高）：**count(字段)<count(主键 id)<count(1)≈count(*)**
@@ -211,11 +211,25 @@ A使用全表扫描，每次读入数据到join buffer供B配（显然，join bu
     SQL更改为：SELECT a.* FROM 表 1 a, (select id from 表 1 where 条件 LIMIT 100000,20 ) b where a.id=b.id
     1. 子查询在利用索引的同时，只查询符号条件的id，无需回表，效率高 
     1. 查出来的数据是小表 join 原来的大表a，对于小表的每个id，直接从a表的主键索引拿到对应的行，只有目标的20行使用了主键索引
-
 #### 6. NULL字段避免使用
 + 索引查询时，会降低查询效率
 + 执行count，distinct，比较符等会出现数据丢失的情况（因为null不被计入）
 
+
+#### 7. explain
+1. type（性能高到低）
+    1. system	        当表中只有一条记录并且该表使用的在储引擎的统计数据是精确的，比如MyISAM、Memory
+    1. const	        主键/唯一索引列进行等值匹配时
+    1. eq_ref	        多表 JOIN 时，被驱动表通过主键或唯一索引进行等值匹配。
+    1. ref	            通过普通索引等值查询，可能返回多行。
+    1. fulltext	    使用全文索引时的访问方式。
+    1. ref_or_null	    类似 ref，但允许值为null
+    1. index_merge	    使用Intersection交集、Union并集、sort-Union排序并集，这三种索引合并的方式来执行查询（用于and/or条件时）
+    1. unique_subquery	子查询使用主键或唯一索引
+    1. index_subquery	子查询使用普通索引
+    1. range	        索引范围扫描
+    1. index	        使用索引覆盖，无需回表，但遍历整个索引
+    1. ALL	            全表扫描
 
 
 ### Memory引擎（内存表）
@@ -230,6 +244,10 @@ A使用全表扫描，每次读入数据到join buffer供B配（显然，join bu
         1. 临时表不会被其他线程访问，没有并发性的问题；
         1. 临时表重启后也是需要删除的，清空数据这个问题不存在；
         1. 对于join没有索引的字段且该表只取部分数据，先把他们存到临时内存表再join显然性能更高
+
+
+
+
 ### 参考文章
 [MySQL 实战 45 讲](https://freegeektime.com/posts/100020801/)
 
