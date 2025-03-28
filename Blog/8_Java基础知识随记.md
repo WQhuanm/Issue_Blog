@@ -18,6 +18,8 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
 1. hashCode()用于快速判断元素之间相等，减少equla调用。hash相等才用equal判断是否真相等而非hash冲突。
 重写 equals() 时必须重写 hashCode() 方法
 
+1. 包装类保存的基本类型的值都是final，每次赋值都是重新new
+
 1. String、StringBuffer、StringBuilder
     ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502241948581.png) 
     1. String的值是final，不可变，对其修改/拼接等操作是new String()给他指向
