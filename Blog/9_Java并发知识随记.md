@@ -33,17 +33,19 @@ Thread thread = new Thread(() -> {
 1. 关于run
     + 调用 start()方法，会启动一个线程并使线程进入了就绪状态，当分配到时间片后就可以开始运行了（自动执行 run()）。
     + 直接执行 run() 方法，只是一个普通方法，不会开启线程
-1. Thread.sleep()和Object.wait()
+1. Thread.sleep()、Object.wait()、Thread.yield()、Thread.onSpinWait()
     + sleep()没有释放锁，而 wait()释放了锁。
     + wait() 方法被调用后，线程不会自动苏醒，需要别的线程调用同一个对象上的 notify()或者 notifyAll() 方法。或使用 wait(long timeout) 超时后线程会自动苏醒。（为0则不会自动苏醒）
-#### 3. 线程的中断：Thread.interrupt()
-1. interrupt()本质是设置一个标记位，标识当前线程可以被中断
-1. 流程
-    + 当该线程的interrupt()被调用时，设置其中断标记位为true
-    + 如果一个线程处于sleep, wait, join 等**可响应中断的**阻塞状态时，若检测到当前线程是可中断的，则会响应抛出InterruptedException异常
-        + 抛出异常后catch部分就是对中断逻辑的处理（直接退出，还是处理后继续执行后续代码）
-        + 抛出异常后会把中断标记位设为false，以便后续可以继续响应中断
+    + yield()表示愿意让出cpu时间片（执行与否取决于OS），可以用于在自旋时减少cpu的消耗，不释放锁
+    + onSpinWait()提示jvm当前处于自旋，可以进行优化，不释放锁且占用cpu，不会导致线程状态的切换
 
+1. 线程的中断：Thread.interrupt()
+    1. interrupt()本质是设置一个标记位，标识当前线程可以被中断
+    1. 流程
+        + 当该线程的interrupt()被调用时，设置其中断标记位为true
+        + 如果一个线程处于sleep, wait, join 等**可响应中断的**阻塞状态时，若检测到当前线程是可中断的，则会响应抛出InterruptedException异常
+            + 抛出异常后catch部分就是对中断逻辑的处理（直接退出，还是处理后继续执行后续代码）
+            + 抛出异常后会把中断标记位设为false，以便后续可以继续响应中断
 ### 二、并发编程
 #### 1. 并发编程的三大特性
 + 原子性：Java只有简单的读取、赋值（而且必须是将数字赋值给某个基本数据类型的变量，变量之间的相互赋值不是原子操作）才是原子操作。
