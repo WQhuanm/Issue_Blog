@@ -36,7 +36,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
 
 1. Bean 的生命周期
     1. 创建Bean实例：Bean容器首先会找到配置文件中的Bean定义，然后使用 Java 反射 API 来创建 Bean 的实例
-    1. Bean 属性赋值/填充：为 Bean 设置相关属性和依赖
+    1. Bean 属性赋值/填充：为 Bean 设置相关属性和依赖注入
     1. Bean 初始化（对Bean实现的一些初始化接口进行调用）
     1. 销毁 Bean：把 Bean 的销毁方法先记录下来，将来需要销毁 Bean 或者销毁容器的时候，就调用这些方法去释放 Bean 所持有的资源。
 
@@ -136,6 +136,16 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
     ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503201311670.png)
     + Filter基于servlet，基于方法回调实现（决定是否把资源释放给下一个filter
     + Interceptor基于Spring，基于动态代理实现
+
+#### 5.Spring的启动流程
+1. 创建IOC容器：ApplicationContext对象
+1. 读取和解析配置文件(XML文件、注解配置类等),将解析到的符合注册条件的Bean转换为BeanDefinition对象，并注册到BeanFactory（默认接口实现类是：DefaultListableBeanFactory）
+1. Spring容器刷新（refresh(),核心步骤）
+    1. 获取BeanFactory并完成对所有BeanDefinition的解析和注册
+    1. 注册Bean后处理器（BeanPostProcessor）。这些处理器允许在Bean初始化前后进行拦截处理（如AOP代理、依赖注入后的处理等）
+    1. 实例化单例非懒加载Bean（即注册Bean，调用构造方法创建；多实例Bean按需创建）
+    1. 初始化Bean（依赖注入，执行定义的初始化方法）
+    1. 初始化事件广播器（用于处理应用事件）和事件监听器（监听Spring容器发布的事件）
 
 ### SpringBoot（约定大于配置）
 1. @SpringBootApplication注解（主要由3个注解组成）
