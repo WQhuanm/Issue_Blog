@@ -77,7 +77,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502211226091
 
 
 #### 2. 索引类型分为主键索引和非主键索引。
-+ 主键索引的叶子节点存的是整行数据。主键索引也被称为聚簇索引（clustered index）。
++ 主键索引的叶子节点存的是整行数据。主键索引也被称为聚簇索引（clustered index，索引结构和全部数据一起存放）。
 主键查询只需搜索主键索引树
 + 非主键索引的叶子节点内容是主键的值。非主键索引也被称为二级索引（secondary index）。
 二级索引会把不包含的（联合）主键字段加入索引末尾来排序。
@@ -230,6 +230,15 @@ A使用全表扫描，每次读入数据到join buffer供B配（显然，join bu
     1. range	        索引范围扫描
     1. index	        使用索引覆盖，无需回表，但遍历整个索引
     1. ALL	            全表扫描
+
+1. extra
+    1. Using filesort：使用了外部排序
+    1. Using temporary：使用了临时表
+    1. Using index：使用了覆盖索引
+    1. Using index condition：使用了索引下推优化
+    1. Using where：server层需要过滤数据，因为存储层的索引未完全覆盖where限制的条件
+    1. Using join buffer：使用了连接缓存
+
 
 
 ### Memory引擎（内存表）
