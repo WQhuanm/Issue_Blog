@@ -11,6 +11,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502191654445
 ###  1. #{} 和 ${} 区别
 + #{}: 解析为SQL时，会将形参变量的值取出，并自动给其添加引号。该方式预编译后在把内容填入，预防SQL注入
 + ${}: 解析为SQL时，将形参变量的值直接取出，直接拼接显示在SQL中,该方式是拼接后再进行sql编译，存在安全隐患
+    + 在where  a='${}'内填充 ' OR '1'='1' --  获得的效果是：where a='' or '1'='1' --' (--注释了where后面的引号及其他内容，而or保证了where为true)
 
 ### 2. Mybatis映射器<mappers>
 #### insert主键自增
