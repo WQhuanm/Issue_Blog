@@ -17,7 +17,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
     + 对象之间的耦合度/依赖程度降低
 ##### 2.依赖注入（DI,Dependency Injection）(IOC思想的具体实现)
 1. Bean的3种注入方式
-    + 构造函数注入：通过类的构造函数来注入依赖项（推荐，确保对象创建时就注入，避免空指针）
+    + 构造函数注入：通过类的构造函数来注入依赖项（推荐，确保对象实例化时就注入，避免初始化时还未注入，属性却被引用导致空指针）
     + Setter 注入：通过类的 Setter 方法来注入依赖项
     + Field（字段） 注入：直接在类的字段上使用注解（如 @Autowired 或 @Resource）来注入依赖项
 
@@ -99,7 +99,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
                 1. 原本构造函数的初始化内容
                 + 动态代理不经过编译器修饰，是不会有前面添加的2步的，所以成员变量都是null
                 
-
+    + Spring可以通过 AopContext.currentProxy()获取代理对象(前提是当前对象有被开启AOP代理，启动类要允许获取代理对象：@EnableAspectJAutoProxy(exposeProxy = true))
 1. AOP的通知类型
     + Before
     + After
