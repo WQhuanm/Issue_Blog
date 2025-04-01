@@ -88,6 +88,14 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
 
 
 
-
+### 3. 使用AspectJ
+只需引入下面依赖
+```xml
+<!-- AspectJ -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+</dependency>
+```
 ### 参考文章
 [彻底征服 Spring AOP 之 理论篇](https://segmentfault.com/a/1190000007469968#item-1-2)
