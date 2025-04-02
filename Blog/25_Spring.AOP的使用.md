@@ -30,7 +30,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
     @EnableAspectJAutoProxy(exposeProxy = true)//启用AOP自动代理，允许暴露代理类
     ```
 
-### 2. 切面的声明
+#### 2. 切面的声明
 > 基本步骤就是声明为切面类，定义切点表达式，编写advice通知方法
 
 1. 切点表达式（指明增强的方法）
@@ -86,9 +86,23 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
 
 
 
+### 三，多个AOP的执行顺序
+1. AOP的优先级由他们的order值决定，order值越低，优先级越高。spring aop（包括事务）的优先级默认都是Integer.MAX_VALUE（即优先级最低）
+1. 如果切面间优先级相同，则由他们注册到Spring的顺序决定谁优先级高（越先注册越高），事务之类的基础设施切面的注册往往早于自定义切面的注册时机
+1. 多个切面可以看成是以方法执行为圆心，优先级越高的切面在外环，越低的在内环。而切面的执行可看成一个箭头穿过圆环得到的顺序（优先级越高，越先开始，但是越晚结束）
+    ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504021928189.png)
+1. 优先级的定义
+    + 自定义切面可以在切面类上注解@Order(value)来设定order值（直接作用于方法上无效）
+    + Spring的事务优先级可在启动类上设置@EnableTransactionManagement(order = value)来设置order值
 
+1. 事务与自定义切面同时使用可能存在的问题
+    1. 在均为设定优先级时，事务切面比自定义切面早注册，在外环
+    1. 如果事务内容抛出异常，会先被自定义切面捕获，如果切面处理异常后没有把异常抛出，则事务切面接受不到异常，不会执行回滚
+    1. 解决思路
+        + 要么提高自定义切面优先级，让事务处理后再到切面catch异常
+        + 要么自定义切面要抛出异常
 
-### 3. 使用AspectJ
+### 附录：使用AspectJ
 只需引入下面依赖
 ```xml
 <!-- AspectJ -->
