@@ -111,17 +111,24 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
 1. Spring AOP的一些问题
     + this自调用问题(动态代理本身的问题)：this调用会直接指向目标对象本身，而不经过代理对象。因此，代理的拦截逻辑不会生效。
 
-#### 3. 事务(@Transactional（声明式事务）)
+#### 3. 事务(@Transactional（声明式事务，相较于编程式事务更简洁）)
 1. 事务传播行为
     + TransactionDefinition.PROPAGATION_REQUIRED（默认）：如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。
     + TransactionDefinition.PROPAGATION_REQUIRES_NEW：创建一个新的事务，如果当前存在事务，则把当前事务挂起。（内部事务提交或回滚不影响外部事务。）
     + TransactionDefinition.PROPAGATION_NESTED：如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行（内部事务异常默认会传播到外部事务，导致整体回滚。）
-
-1. 回滚策略
+1. 回滚策略（spring 的事务只能对数据库等支持回滚操作的数据进行回滚，其他数据不行）
     + 默认回滚策略是只有在遇到RuntimeException / Error时才会回滚事务，而不会回滚 Checked Exception（受检查异常）
     + 可以使用@Transactional 注解的 rollbackFor 和 noRollbackFor 属性来指定
+    + 声明式事务部分回滚的策略（支付金额回滚，支付记录（成功/失败）不回滚）
+        1. 可以把事务拆分成多个子事务，传播策略是挂起当前事务，则大事务的回滚不会使得部分小事务必须跟着回滚
+        1. 在事务方法内部手动捕获异常处理后手动代码回滚（TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();），不把异常抛出让事务切面回滚。回滚逻辑由我们定义，可以实现异常与否时执行不同逻辑
+        1. 自定义aop切面，优先级低于事务，他会比事务切面提前获得异常，自定义切面来处理异常，不抛出给事务切面回滚
+
 1. 事务失效的可能
     + 因为事务基于AOP，this调用等AOP错误会导致事务失效
+    + 抛出的异常被提前捕获处理掉，没有被事务切面接受到
+    + 数据不支持回滚
+
 
 #### 4.Spring MVC（模型(Model)、视图(View)、控制器(Controller)）
 1. MVC模式
