@@ -1,6 +1,10 @@
 ---
 title: Docker的使用
 date: 2025-04-07 12:34:48
+categories: 
+    - CS技术
+tags: 
+    - CS技术
 cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504072032101.png
 ---
 
@@ -25,7 +29,8 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504072032101
     + 查看运行容器的详情信息：docker ps
 
 1. Docker 卷（volume，用于可持久化容器内部数据）命令：基本常见的docker命令中间加个volume就能执行（eg：docker volume inspect 卷名）
-
+    + 较新版本的docker的volume在windows的挂载位置是：\\wsl$\docker-desktop\mnt\docker-desktop-disk\data\docker\volumes
+    + 较旧版本的位置是： \\wsl$\docker-desktop-data\data\docker\volumes
 1. 容器制作成镜像与镜像保存/解压
     + 将容器制作成镜像：docker commit 容器名 镜像名
     + 将镜像保存到宿主机当前文件夹下：docker save -o 宿主机目标文件名（可以命名为.tar文件） 镜像名
