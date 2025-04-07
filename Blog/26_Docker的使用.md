@@ -24,13 +24,18 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504072032101
             + -e：环境变量
         
 1. 容器命令
-    + 容器内部执行命令：docker exec -it 容器名 执行的命令(如/bin/bash：打开容器的交互式终端)
+    + 容器内部执行命令：docker exec -it 容器名 执行的命令(如bash：打开容器的交互式终端)
     + 删除容器：docker rm 
     + 查看运行容器的详情信息：docker ps
+    + 宿主/容器文件传输：docker cp win文件路径 容器名:容器目标文件路径
 
 1. Docker 卷（volume，用于可持久化容器内部数据）命令：基本常见的docker命令中间加个volume就能执行（eg：docker volume inspect 卷名）
-    + 较新版本的docker的volume在windows的挂载位置是：\\wsl$\docker-desktop\mnt\docker-desktop-disk\data\docker\volumes
-    + 较旧版本的位置是： \\wsl$\docker-desktop-data\data\docker\volumes
+    1. windows的wsl的docker卷位置（与容器内部文件一一映射）
+        + 较新版本的docker的volume在windows的挂载位置是：\\wsl$\docker-desktop\mnt\docker-desktop-disk\data\docker\volumes
+        + 较旧版本的位置是： \\wsl$\docker-desktop-data\data\docker\volumes
+    1. win文件传输到容器内部路径的方式
+        1. 使用docker cp
+        1. win的资源管理器直接定位到docker卷位置，把文件复制过去即可
 1. 容器制作成镜像与镜像保存/解压
     + 将容器制作成镜像：docker commit 容器名 镜像名
     + 将镜像保存到宿主机当前文件夹下：docker save -o 宿主机目标文件名（可以命名为.tar文件） 镜像名
