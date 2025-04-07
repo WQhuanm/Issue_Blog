@@ -28,8 +28,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504072032101
 
 1. 容器制作成镜像与镜像保存/解压
     + 将容器制作成镜像：docker commit 容器名 镜像名
-    # 镜像打包备份(打包备份的文件会自动存放在当前命令行的路径下,如果想让保存的文件可以打开,可以加.tar后缀)
-    + 将镜像保存到宿主机当前文件夹下：docker save -o 宿主机目标文件名 镜像名
+    + 将镜像保存到宿主机当前文件夹下：docker save -o 宿主机目标文件名（可以命名为.tar文件） 镜像名
     + 镜像解压：docker load -i 文件路径
 
 
