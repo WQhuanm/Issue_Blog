@@ -31,13 +31,13 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 ## MySQL
 - [MySQL基础知识随记](https://github.com/WQhuanm/Issue_Blog/issues/18)--2025-03-15
 - [MySQL学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/7)--2025-02-21
-## Redis
-- [Redis学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/10)--2025-03-03
-- [redis三大主流问题及其解决方案](https://github.com/WQhuanm/Issue_Blog/issues/4)--2025-01-26
 ## SpringBoot
 - [Spring AOP的使用](https://github.com/WQhuanm/Issue_Blog/issues/25)--2025-04-01
 - [Spring学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/21)--2025-03-20
 - [SpringBoot项目配置文件模板](https://github.com/WQhuanm/Issue_Blog/issues/5)--2025-01-26
+## 开发中间件
+- [Redis学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/10)--2025-03-03
+- [redis三大主流问题及其解决方案](https://github.com/WQhuanm/Issue_Blog/issues/4)--2025-01-26
 ## 面经
 - [腾讯云后台一面（3.24）  --凉](https://github.com/WQhuanm/Issue_Blog/issues/24)--2025-03-28
 - [网易雷火一面（3.21）](https://github.com/WQhuanm/Issue_Blog/issues/23)--2025-03-26

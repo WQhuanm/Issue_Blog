@@ -2,9 +2,9 @@
 title: Redis学习笔记
 date: 2025-03-03 08:50:15
 categories: 
-    - Redis
+    - 开发中间件
 tags: 
-    - Redis
+    - 开发中间件
 cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202501262318741.jpeg
 ---
 
@@ -98,3 +98,4 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202501262318741
 1. 底层数据
     1. redis-zset：使用跳表实现
     ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503262038882.png)
+
