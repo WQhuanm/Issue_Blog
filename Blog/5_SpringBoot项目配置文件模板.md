@@ -119,10 +119,24 @@ spring:
           time-between-eviction-runs: 10s
   jackson:
     default-property-inclusion: non_null # JSON处理时忽略非空字段
-
+  rabbitmq:
+    host: localhost
+    port: 5672
+    virtual-host: / #rabbitmq的虚拟主机
+    username: admin
+    password: 1234
+    connection-timeout: 1s # 设置MQ的连接超时时间
+    listener:
+      simple:
+        prefetch: 1 # 每次只能获取一条消息，处理完成才能获取下一个消息
 mybatis-plus:
   configuration:
     # 日志
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    
+    
+logging:
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS #设置日志的日期输出格式
 ```
 
