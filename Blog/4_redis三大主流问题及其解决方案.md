@@ -2,9 +2,9 @@
 title: redis三大主流问题及其解决方案
 date: 2025-01-26 15:27:28
 categories: 
-    - Redis
+    - 开发中间件
 tags: 
-    - Redis
+    - 开发中间件
 cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202501262318741.jpeg
 ---
 
@@ -31,4 +31,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202501262318741
 数据在缓存不再设置TTL，但是记录逻辑过期时间
 查询缓存时，如果数据已经过期，尝试获取互斥锁，成功则另开一个线程去更新数据
 在数据更新完毕前获取到的数据均为脏数据
+
+
+
 
