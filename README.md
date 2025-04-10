@@ -14,9 +14,7 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 - [下次要是面试官还拷打我红黑树的实现，我就要掏出这个了！！！](https://github.com/WQhuanm/Issue_Blog/issues/15)--2025-03-13
 - [计算机基础学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/14)--2025-03-12
 ## CS技术
-## CS技术
 - [Docker的使用](https://github.com/WQhuanm/Issue_Blog/issues/26)--2025-04-07
-## GitHub
 ## GitHub
 - ["让写blog的人专注于blog，实现全自动issue_blog，use：Issue + Hexo + Github Action"](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 ## Java
@@ -28,7 +26,6 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 ## Life
 - [笔试、笔试、笔试/(ㄒoㄒ)/~~](https://github.com/WQhuanm/Issue_Blog/issues/17)--2025-03-15
 - [终于要开始面试挑战了吗......有点意思😊](https://github.com/WQhuanm/Issue_Blog/issues/11)--2025-03-06
-## MyBatis
 ## MyBatis
 - [Mybatis编码随记](https://github.com/WQhuanm/Issue_Blog/issues/6)--2025-02-19
 ## MySQL
