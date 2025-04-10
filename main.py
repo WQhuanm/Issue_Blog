@@ -128,7 +128,7 @@ def add_md_label(repo, md, me):
                 continue
             print("Label:", label.name)
             issues = get_issues_from_label(repo, label)
-            # print(issues.totalCount)
+            print(issues.totalCount)
             if issues.totalCount:
                 md.write("## " + label.name + "\n")
                 print("Label:", label.name)
