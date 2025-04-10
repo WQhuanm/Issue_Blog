@@ -5,7 +5,7 @@ categories:
     - CS技术
 tags: 
     - CS技术
-cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504072032101.png
+cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504101117974.png
 ---
 
 ### 常用命令
