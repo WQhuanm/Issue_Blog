@@ -146,21 +146,140 @@ def add_md_label(repo, md, me):
                 md.write("</details>\n")
                 md.write("\n")
 def get_to_generate_issues(repo, dir_name, issue_number=None):
+    md_files = os.listdir(dir_name)
+    generated_issues_numbers = [
+        int(i.split("_")[0]) for i in md_files if i.split("_")[0].isdigit()
+    ]
+    to_generate_issues = [
+        i
+        for i in list(repo.get_issues())
+        if int(i.number) not in generated_issues_numbers
+    ]
+    if issue_number:
+        to_generate_issues.append(repo.get_issue(int(issue_number)))
     return to_generate_issues
 def _make_friend_table_string(s):
+    info_dict = FRIENDS_INFO_DICT.copy()
+    try:
+        string_list = s.splitlines()
+        # drop empty line
+        string_list = [l for l in string_list if l and not l.isspace()]
+        for l in string_list:
+            string_info_list = re.split("：", l)
+            if len(string_info_list) < 2:
+                continue
+            info_dict[string_info_list[0]] = string_info_list[1]
+        return FRIENDS_TABLE_TEMPLATE.format(
+            name=info_dict["名字"], link=info_dict["链接"], desc=info_dict["描述"]
+        )
+    except Exception as e:
+        print(str(e))
         return
 
 def _valid_xml_char_ordinal(c):# help to covert xml vaild string
+    codepoint = ord(c)
+    # conditions ordered by presumed frequency
+    return (
+        0x20 <= codepoint <= 0xD7FF
+        or codepoint in (0x9, 0xA, 0xD)
+        or 0xE000 <= codepoint <= 0xFFFD
+        or 0x10000 <= codepoint <= 0x10FFFF
     )
 
 def generate_rss_feed(repo, filename, me):
+    generator = FeedGenerator()
+    generator.id(repo.html_url)
+    generator.title(f"RSS feed of {repo.owner.login}'s {repo.name}")
+    generator.author(
+        {"name": os.getenv("GITHUB_NAME"), "email": os.getenv("GITHUB_EMAIL")}
+    )
+    generator.link(href=repo.html_url)
+    generator.link(
+        href=f"https://raw.githubusercontent.com/{repo.full_name}/main/{filename}",
+        rel="self",
+    )
+    for issue in repo.get_issues():
+        if not issue.body or not is_me(issue, me) or issue.pull_request:
+            continue
+        item = generator.add_entry(order="append")
+        item.id(issue.html_url)
+        item.link(href=issue.html_url)
+        item.title(issue.title)
+        item.published(issue.created_at.strftime("%Y-%m-%dT%H:%M:%SZ"))
+        for label in issue.labels:
+            item.category({"term": label.name})
+        body = "".join(c for c in issue.body if _valid_xml_char_ordinal(c))
+        item.content(CDATA(marko.convert(body)), type="html")
     generator.atom_file(filename)
 
 def add_md_firends(repo, md, me):
+    s = FRIENDS_TABLE_HEAD
+    friends_issues = list(repo.get_issues(labels=FRIENDS_LABELS))
+    if not FRIENDS_LABELS or not friends_issues:
+        return
+    friends_issue_number = friends_issues[0].number
+    for issue in friends_issues:
+        for comment in issue.get_comments():
+            if is_hearted_by_me(comment, me):
+                try:
+                    s += _make_friend_table_string(comment.body or "")
+                except Exception as e:
+                    print(str(e))
+                    pass
+    s = markdown.markdown(s, output_format="html", extensions=["extra"])
+    with open(md, "a+", encoding="utf-8") as md:
+        md.write(
+            f"## [友情链接](https://github.com/{str(me)}/gitblog/issues/{friends_issue_number})\n"
+        )
+        md.write("<details><summary>显示</summary>\n")
+        md.write(s)
+        md.write("</details>\n")
         md.write("\n\n")
 
 #change issue to .md for deployment of your blog site
 def save_issue(issue, me, dir_name=BACKUP_DIR):
+    md_name = os.path.join(
+        dir_name, f"{issue.number}_{issue.title.replace('/', '-').replace(' ', '.')}.md"
+    )
+    # change issue  to md  (Hexo requires this format)
+    # ---
+    # title: issue.title 
+    # date: issue.create_date
+    # categories:
+    #     - issue.milestone
+    # tags:
+    #     - issue.label
+    # cover: 
+    # ---
+    # issue.body 
+    #
+
+    #the cover have default value,if you want to customize,make sure the issue body's first line is ![](your png'link) or change the following code 
+    with open(md_name, "w") as f:
+        f.write("---\n")
+        f.write(f"title: {issue.title}\n")
+        f.write(f"date: {issue.created_at}\n")
+        if issue.milestone:
+            f.write("categories: \n")
+            f.write(f"    - {issue.milestone.title}\n")
+        if issue.labels:
+            f.write("tags: \n")
+            for label in issue.labels:
+                f.write(f"    - {label.name}\n")
+        original_body = issue.body
+        match = re.match(r'!\[.*?\]\((https?://[^\)]+)\)', original_body)# 使用正则表达式匹配图片链接
+        if match:
+            image_url = match.group(1)
+            new_body = f"cover: {image_url}\n---\n\n" + original_body.split('\n', 1)[1]  # 保留后面的部分
+            f.write(f"{new_body}\n")
+        else:
+            f.write("cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910.png\n")
+            f.write("---\n\n")
+            f.write(issue.body)
+        # if issue.comments:
+        #     for c in issue.get_comments():
+        #         if is_me(c, me):
+        #             f.write("\n\n---\n\n")
         #             f.write(c.body or "")
 
 def main(token, repo_name, issue_number=None, dir_name=BACKUP_DIR):
