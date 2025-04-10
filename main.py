@@ -126,18 +126,18 @@ def add_md_label(repo, md, me):
             # we don't need add top label again
             if label.name in IGNORE_LABELS:
                 continue
-            print("Label:", label.name)
+            # print("Label:", label.name)
             issues = get_issues_from_label(repo, label)
-            print(issues.totalCount)
-            if issues.totalCount:
-                md.write("## " + label.name + "\n")
-                print("Label:", label.name)
-                issues = sorted(issues, key=lambda x: x.created_at, reverse=True)
+            # print(issues.totalCount)
+            # if issues.totalCount: #这个totalcount接口似乎有问题
+            #     md.write("## " + label.name + "\n")
+            #     print("Label:", label.name)
+            issues = sorted(issues, key=lambda x: x.created_at, reverse=True)
             i = 0
             for issue in issues:
                 if not issue:
                     continue
-                print("Issue:", issue,"  。label: ",label.name)
+                # print("Issue:", issue,"  。label: ",label.name)
                 if is_me(issue, me):
                     if i==0:
                         md.write("## " + label.name + "\n")
