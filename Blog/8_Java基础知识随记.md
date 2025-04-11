@@ -33,6 +33,54 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
         + 静态代码块是在类加载的时候就执行了，而执行的过程中，如果出现错误，那么这个类就初始化失败。
         + 当类初始化失败时，任何使用该类的代码都可能抛出 ExceptionInInitializerError。
 
+#### 反射
+##### 1. 通过反射能绕过访问权限获取私有字段/方法
+```java
+Class<Test> c = Test.class;
+try {
+    /**
+     * getDeclaredXXX:获取所有级别函数/字段，非public级别需要设定setAccessible(true)才能使用
+     * getXXX：获取public级别的
+     */
+    //获取私有带参构造函数、私有字段、私有方法
+    Constructor<Test> constructor = c.getDeclaredConstructor(int.class, String.class);
+    constructor.setAccessible(true);
+
+    Field filed = c.getDeclaredField("filed");
+    filed.setAccessible(true);
+
+    Method print = c.getDeclaredMethod("print",String.class);
+    print.setAccessible(true);
+
+    //测试私有构造函数/方法/字段
+    Test now = constructor.newInstance(666, "张三");
+    //调用时需要传入实例对象，后面附带方法参数
+    System.out.println(filed.get(now));//张三
+    print.invoke(now,"llllla");//haha:  llllla
+    filed.set(now,"李四");
+    System.out.println(filed.get(now));//李四
+
+} catch (Exception ex) {
+    System.out.println(ex);
+}
+
+class Test {
+    public int val;
+    private String filed;
+
+    private void print(String s) {
+        System.out.println("haha:  "+s);
+    }
+    public Test() {}
+   private   Test(int v, String s) {
+        val = v;
+        filed = s;
+    }
+}
+
+```
+
+
 ### 2. Java 集合
 1. 数组和链表的区别
     + 数组访问速度快，但插入删除慢，且内存必须连续，可能存在空间浪费或不足无法扩展
