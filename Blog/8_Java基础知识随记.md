@@ -128,7 +128,7 @@ class Test {
             private A() {}
             public  static A getUniqueInstance() {//获取实例
                 if (uniqueInstance == null) {//先判断对象是否已经实例过，没有实例化过才进入加锁代码
-                    synchronized (Singleton.class) {//类对象加锁
+                    synchronized (A.class) {//类对象加锁
                         if (uniqueInstance == null) {
                             uniqueInstance = new A();
                         }
