@@ -110,14 +110,24 @@ class Test {
     1. 核心字段：initialCapacity(初始容量)、loadFactor(负载因子(可以大于1))、threshold（扩容阈值）
         + 扩容阈值一般等于Capacity*loadFactor，如果不超过最大阈值的话。当map元素数量>threshold，执行resize()扩容
         + loadFactor 负载因子控制数组存放数据的疏密程度，默认负载因子为0.75f。
+        + 扩容：先创建一个新table，把旧table暂存起来，然后table指向新的空table，遍历旧table的桶把元素迁移到新table（扩容期间get/put操作对新table存在并发问题）
     1. 线程不安全存在的一些问题：
         + 扩容会死循环/死锁（JDK7）：因为采用头插法，导致链表成为环形链表
             ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503141622646.png)
         + 并发下put元素消失
         + get，put并发导致get为null，因为put导致扩容改位置了
-1. 其他Map
-    1. LinkedHashMap 继承自 HashMap，并在 HashMap 基础上维护一条双向链表，支持遍历时会按照插入顺序有序进行迭代。
-    1. ConcurrentHashMap线程安全（Synchronized 锁加 CAS 的机制），底层是数组+链表/红黑树
+
+
+1. ConcurrentHashMap
+    + 加锁：基本是在桶上（table数组的一个结点）加Synchronized，变更操作则是unsafe的cas锁
+    + 扩容
+        + 引入了迁移结点ForwardingNode：一个桶被迁移后，把该结点标记为ForwardingNode（key,value均为null，hash值为MOVED（-1）,但提供了新table的指向）
+        + 扩容的核心是transfer迁移方法，
+            + 第一个执行transfer会创建一个新nextTable
+            + 对于每个执行transfer的线程，会分配其把旧table的一段连续桶迁移到新table
+    + put：如果put的桶是MOVED状态，则执行helpTransfer去帮忙扩容，否则锁桶然后去插入元素
+    + get：如果get的桶是MOVED状态，说明数据已经迁移到新table，去新table查找，否则查找旧table
+1. LinkedHashMap 继承自 HashMap，并在 HashMap 基础上维护一条双向链表，支持遍历时会按照插入顺序有序进行迭代。
 
 ### 3.设计模式
 1. 单例模式（确保一个类只有一个实例）
