@@ -162,5 +162,5 @@ class Test {
         + CGLIB动态代理：通过字节码生成库（如 ASM）动态创建目标类的子类。只能代理public且**非final**的方法/类
 
 ### 参考文章
-[[Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析](https://javadoop.com/post/hashmap)](https://javadoop.com/post/hashmap)
+[Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析](https://javadoop.com/post/hashmap)
 
