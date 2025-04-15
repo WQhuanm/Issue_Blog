@@ -1,6 +1,7 @@
 ---
 title: Redis学习笔记
 date: 2025-03-03 08:50:15
+mathjax: true
 categories: 
     - 开发中间件
 tags: 
@@ -99,6 +100,10 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202501262318741
 1. redis-zset：使用跳表实现
     ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503262038882.png)
 
-1. 
+1. HyperLogLog：基数估算（标准误算率是 0.81%）
+    > 具体算法可参考：[基数估算（count-distinct problem）](https://wqhuanm.github.io/Issue_Blog/2025/04/14/31_%E5%9F%BA%E6%95%B0%E4%BC%B0%E7%AE%97%EF%BC%88count-distinct.problem%EF%BC%89/)
+
+    + 一个键占用12kb（64位，前14位划分桶，每个桶需要6bit（2^6>50）计算桶value）
+    + 合计占用（2^14）*6bit=12kb
 
 
