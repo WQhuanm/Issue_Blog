@@ -1,6 +1,7 @@
 ---
 title: 基数估算（count-distinct problem）
 date: 2025-04-15 07:14:09
+mathjax: true
 categories: 
     - CS基础
 tags: 
@@ -37,3 +38,5 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504151511118
 ### 参考文章
 [如何科学的计数？](https://bindog.github.io/blog/2015/02/14/cardinality-counting/#linear-counting)
 [HyperLogLog 算法详解](https://zhuanlan.zhihu.com/p/77289303)
+
+
