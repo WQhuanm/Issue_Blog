@@ -5,12 +5,13 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 - ["让写blog的人专注于blog，实现全自动issue_blog，use：Issue + Hexo + Github Action"](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 - [About me](https://github.com/WQhuanm/Issue_Blog/issues/1)--2024-12-22
 ## 最近更新
+- [基数估算（count-distinct problem）](https://github.com/WQhuanm/Issue_Blog/issues/31)--2025-04-15
 - [柠檬微趣一面（4.3）](https://github.com/WQhuanm/Issue_Blog/issues/30)--2025-04-14
 - [网易互娱一面（4.1）](https://github.com/WQhuanm/Issue_Blog/issues/29)--2025-04-14
 - [蚂蚁平台技术事业群一面(3.31) --凉](https://github.com/WQhuanm/Issue_Blog/issues/28)--2025-04-10
 - [RabbitMQ学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/27)--2025-04-10
-- [Docker的使用](https://github.com/WQhuanm/Issue_Blog/issues/26)--2025-04-07
 ## CS基础
+- [基数估算（count-distinct problem）](https://github.com/WQhuanm/Issue_Blog/issues/31)--2025-04-15
 - [下次要是面试官还拷打我红黑树的实现，我就要掏出这个了！！！](https://github.com/WQhuanm/Issue_Blog/issues/15)--2025-03-13
 - [计算机基础学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/14)--2025-03-12
 ## CS技术
