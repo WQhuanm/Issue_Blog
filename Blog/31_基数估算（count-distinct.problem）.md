@@ -9,7 +9,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504151511118
 ---
 
 >计算基数（集合中不重复元素的个数，distinct count），在UV统计等大数据量计数操作很常见
-一般的精准计数采用hash扰乱+bitmap标记，空间复杂度为bitmap需要多少位，消耗太大了，因此诞生了基于概率的粗略估计
+一般的精准计数采用hash扰乱+bitmap标记，空间np复杂度为bitmap需要多少位，消耗太大了，因此诞生了基于概率的粗略估计
 
 ### Linear Counting（LC算法）
 1. 基本思想还是基于bitmap（设映射空间为m，m大约为基数n的十分之一）
