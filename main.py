@@ -263,6 +263,7 @@ def save_issue(issue, me, dir_name=BACKUP_DIR):
         f.write("---\n")
         f.write(f"title: {issue.title}\n")
         f.write(f"date: {issue.created_at}\n")
+        f.write(f"mathjax: true\n")
         if issue.milestone:
             f.write("categories: \n")
             f.write(f"    - {issue.milestone.title}\n")
