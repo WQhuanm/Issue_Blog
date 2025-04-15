@@ -48,6 +48,7 @@ jobs:
           npm install -g hexo-cli
           git clone https://$GH_TOKEN@github.com/WQhuanm/Issue_Blog_Repo.git output 
           cd output && sudo rm -rf node_modules
+          sudo apt-get install pandoc
           npm install 
           mkdir -p ./source/_posts/ && cp ../Blog/* ./source/_posts/
           hexo clean && hexo generate
