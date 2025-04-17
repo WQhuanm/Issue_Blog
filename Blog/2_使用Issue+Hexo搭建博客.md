@@ -1,6 +1,7 @@
 ---
 title: 使用Issue+Hexo搭建博客
 date: 2024-12-23 07:46:12
+mathjax: true
 categories: 
     - Top
 tags: 
@@ -10,6 +11,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412231400807
 ---
 
 >本文主要借鉴于Github的一个issue_blog项目：[yihong0618/gitblog](https://github.com/yihong0618/gitblog)
+
 + 在基于以往的Hexo博客部署的基础上，使用了Github：Action来自动部署，只需要把文章提交到issue（可以使用label打标签，使用milestone来归档），其他环节交给action即可
 #### 最终效果可参考
 >我的[Blog仓库](https://github.com/WQhuanm/Issue_Blog)以及[Blog网站](https://wqhuanm.github.io/Issue_Blog/)
@@ -18,6 +20,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412231400807
 clone这个[仓库](https://github.com/WQhuanm/Issue_Blog.git)到你想用来建立博客的仓库
 
 这份博客运作的核心有三:
+
 1. main.py: 内含生成readme的逻辑
 2. generate_readme.yml: 通过action自动调用main.py生成readme
 3. generate_page.yml: 在readme生成后，将博客部署到Gitpage网站
@@ -44,6 +47,7 @@ clone这个[仓库](https://github.com/WQhuanm/Issue_Blog.git)到你想用来建
 
 ##### 4. 删除Blog文件夹（因为里面是我博客的存档）
 ps：你每次删除该文件夹，博客部署时都会检测是否有其他文章的md文件不存在，检测到则会重新生成的
+
 #### Option
 1. 更改main.py的MD_HEAD内容，这个会写在readme头部
 
@@ -57,6 +61,8 @@ readme会根据你打的label对你的博客进行分类
  + 我也提供了一个[公共仓库](https://github.com/WQhuanm/Test_Blog_Repo.git)以便您进行测试，你可以先暂时使用这个
  + 建议**私人**仓库，因为你配置文件极可能有个人敏感信息
  + 建议先在本地测试好你的静态网站部署是成功的，然后配置成私人仓库给workflow来clone，毕竟本地调试和配置要容易的多
+
+
 #### 2. 修改 .github\workflows\generate_page.yml，参考里面的注释
  + 修改BASE_URL
  + 修改name为 Generate Hexo public 任务里面的克隆仓库（也可以改成我提供的仓库来测试:https://github.com/WQhuanm/Test_Blog_Repo.git)
@@ -78,7 +84,8 @@ readme会根据你打的label对你的博客进行分类
 
 #### 附注另一种方法：使用Zola简易配置Gitpage
 >[yihong0618/gitblog](https://github.com/yihong0618/gitblog)使用Zola配置了Github Page。我这里简要介绍一下zola的配置
- 1. 你无需弄一个私有仓库了，只需要在博客仓库根目录添加一个config.toml文件，内容如下:
+
+1. 你无需弄一个私有仓库了，只需要在博客仓库根目录添加一个config.toml文件，内容如下:
  ``` toml
     base_url = "https://{username}.github.io/{your blog repo}/" #如果repo是{username}.github.io,请改为https://{username}.github.io/
     generate_feeds = true
@@ -96,7 +103,8 @@ readme会根据你打的label对你的博客进行分类
         {url = "$BASE_URL/issue-282/", name = "About"},
     ]
  ```
- 2. generate_page.yml改为这个
+
+1. generate_page.yml改为这个
  ``` yml
     name: Deploy static content to GitPages
     on:
@@ -151,8 +159,13 @@ readme会根据你打的label对你的博客进行分类
             id: deployment
             uses: actions/deploy-pages@v3
  ```
+
 ### 参考文章:
 [这个博客开源了](https://github.com/yihong0618/gitblog/issues/177)
+
 [使用 GitHub Issues 来写博客，真香。](https://xie.infoq.cn/article/f89ea3ba86724ef568880ad04)
+
 [jsDelivr和Github配合才是最佳免费CDN，五分钟学会使用，附搭建免费图床教程](https://blog.csdn.net/weixin_44786530/article/details/129851540)
+
+
 [加快GitHub Pages国内访问速度](https://zu1k.com/posts/coding/speedup-github-page/#%E4%BD%BF%E7%94%A8-cdn)
