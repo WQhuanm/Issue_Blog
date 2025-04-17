@@ -166,7 +166,7 @@ Thread thread = new Thread(() -> {
 
 
 #### 5. ThreadLocal（每个线程有专属本地变量）
-    ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502262327509.png)
+![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502262327509.png)
 
 1. 原理
     + ThreadLocal有个静态内部类ThreadLocalMap（类似hashmap），以ThreadLocal为Key，Object为value，用Entry存取。一个线程每创建一个ThreadLocal可以存取一个变量副本
