@@ -131,7 +131,7 @@ class Test {
         + 引入了迁移结点ForwardingNode：一个桶被迁移后，把该结点标记为ForwardingNode（key,value均为null，hash值为MOVED（-1）,但提供了新table的指向）
         + 扩容的核心是transfer迁移方法，
             + 第一个执行transfer会创建一个新nextTable
-            + 对于每个执行transfer的线程，会分配其把旧table的一段连续桶迁移到新table
+            + 对于每个执行transfer的线程，会分配其把旧table的一段连续桶迁移到新table（迁移一个桶时，从尾巴迁移到头部，保证get不加锁也不存在问题）
     + put：如果put的桶是MOVED状态，则执行helpTransfer去帮忙扩容，否则锁桶然后去插入元素
     + get：如果get的桶是MOVED状态，说明数据已经迁移到新table，去新table查找，否则查找旧table
 1. LinkedHashMap 继承自 HashMap，并在 HashMap 基础上维护一条双向链表，支持遍历时会按照插入顺序有序进行迭代。
