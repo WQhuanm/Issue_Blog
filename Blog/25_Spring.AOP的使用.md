@@ -1,12 +1,14 @@
 ---
 title: Spring AOP的使用
 date: 2025-04-01 08:12:40
+mathjax: true
 categories: 
     - SpringBoot
 tags: 
     - SpringBoot
 cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203.jpeg
 ---
+
 
 ### 一，AOP基础概念
 1. 连接点（Join Point）：可以认为ioc容器的所有类（不包括切面类）的所有**方法执行（运行时的方法）**都是JoinPoint，他们都能被增强
@@ -18,7 +20,8 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
 ### 二，AOP的使用
 #### 1. aop环境配置
 1. pom.xml
-    ``` xml
+
+    ```xml
             <!--aop 切面-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -26,6 +29,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
             </dependency>
     ```
 1. Application启动类开启注解
+
     ```java
     @EnableAspectJAutoProxy(exposeProxy = true)//启用AOP自动代理，允许暴露代理类
     ```
@@ -38,6 +42,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
         + execution(* com.wqhuanm..*.*(..)) 任意返回类型，com.wqhuanm的包及其子包，任意类 ，任意方法 ，(..)任意参数
         + execution(public int com.wqhuanm.MyserviceImpl.*(String name, ..)) public且返回为int，指定类的任意第一个参数为string的方法
     1. @annotation注解
+
         ```java
             @Pointcut("@annotation(com.learn.annotation.SystemLog)")//增强使用了这个注解的方法
             public void pt() {
@@ -54,6 +59,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
     + ProceedingJoinPoint：JoinPoint的子接口，提供proceed()：执行目标方法
 
 1. advice通知写法
+
     ```java
     @Aspect//声明为切面类
     @Component
@@ -112,4 +118,4 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
 </dependency>
 ```
 ### 参考文章
-[彻底征服 Spring AOP 之 理论篇](https://segmentfault.com/a/1190000007469968#item-1-2)
+[彻底征服 Spring AOP 之 理论篇](https://segmentfault.com/a/1190000007469968#item-1-2)  
