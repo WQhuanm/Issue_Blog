@@ -96,9 +96,13 @@ class Test {
 
 
 1. HashSet、LinkedHashSet、TreeSet
+
     HashSet 的底层数据结构是HashMap。读取顺序是按hash值排序
+
     LinkedHashSet 的底层数据结构是LinkedHashMap，链表维护元素的插入顺序，能按照添加顺序遍历输出
+
     TreeSet 的底层数据结构是红黑树
+    
 1. HashMap单独坐一桌：
     1. 由数组+链表/红黑树 组成的（链表长>7且数组长度>63，转换为红黑树）。
         + 元素是Node<K,V>,红黑树的结点TreeNode继承自Node，使得可以用迭代器遍历map所有结点
