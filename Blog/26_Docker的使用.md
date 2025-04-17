@@ -1,6 +1,7 @@
 ---
 title: Docker的使用
 date: 2025-04-07 12:34:48
+mathjax: true
 categories: 
     - CS技术
 tags: 
@@ -44,11 +45,13 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504101117974
 
 ### 附：Docker的安装
 > [docker及汉化包](https://github.com/asxez/DockerDesktop-CN)
+
 1. D盘安装：cmd执行："D:\DockerDesktop-installer.exe" install --installation-dir="D:\My_Soft\Docker"  （安装包 install --installation-dir=目标安装路径（需要先创建好相应文件夹）
 
 1. settings的资源部分，更改镜像保存位置为D盘
 
 1. 添加docker镜像（setting的docker 引擎部分）
+
     ```json
     "registry-mirrors": [
         "https://docker.mirrors.ustc.edu.cn",
