@@ -12,11 +12,14 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502211226091
 ### MySQL的执行原理
 #### 1. MySQL的基本架构
 ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503142020245.png)
+
 + MySQL 可以分为 Server 层和存储引擎层两部分
     + 存储引擎层负责数据的存储和提取
     + server层：所有跨存储引擎的功能都在此实现，比如存储过程、触发器、视图、内置函数等。
 
 注：查询缓存板块弊大于利，因为许多是无效缓存。8.0之后已经删除
+
+
 #### 2. SQL请求流程
 1. 连接器：拦截器与客户端建立连接，权限验证（默认为长连接，可以接受多个请求）
 1. 分析器：对SQL语句词法分析，语法分析，检查SQL语句执行权限
