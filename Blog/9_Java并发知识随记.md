@@ -167,7 +167,7 @@ Thread thread = new Thread(() -> {
 
 #### 5. ThreadLocal（每个线程有专属本地变量）
     ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502262327509.png)
-    
+
 1. 原理
     + ThreadLocal有个静态内部类ThreadLocalMap（类似hashmap），以ThreadLocal为Key，Object为value，用Entry存取。一个线程每创建一个ThreadLocal可以存取一个变量副本
     + Thread有个ThreadLocalMap属性(初始为null)，ThreadLocal存入变量副本，是存入到当前Thread的ThreadLocalMap里面
@@ -250,10 +250,11 @@ Thread thread = new Thread(() -> {
     while (!executor.isTerminated()) ;
     System.out.println("Finished all threads");
 ```
+
+
 1. sumbit()执行任务与excute()执行任务
     + execute()未捕获异常会导致线程终止，线程池创建新线程替代；submit()会把异常封装在Future中，线程继续复用。    
     + execute()用于提交不需要返回值的任务，无法判断任务是否被线程池成功执行；submit()返回一个 Future 对象，通过这个 Future 对象可以判断任务是否执行成功，并获取任务的返回值(Future.get())
 
 
 
-<!-- 1. ReentrantLock，AQS -->
