@@ -1,12 +1,14 @@
 ---
 title: RabbitMQ学习笔记
 date: 2025-04-10 03:15:19
+mathjax: true
 categories: 
     - 开发中间件
 tags: 
     - 开发中间件
 cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504101114379.png
 ---
+
 
 ### 基础知识
 1. 基本架构
@@ -23,22 +25,23 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504101114379
   + Headers：头匹配，基于MQ的消息头匹配，用的较少
 
 1. MQ可靠性保证
-  1. 生产者确认机制：Publisher Confirm机制（消息入队成功则返回ack，否则返回nack）
-  1. MQ可靠性
-    + 默认开启数据持久化（ps：消息持久化后才会返回给生产者ack）
-    + 默认开启LazyQueue：接收到消息直接存入磁盘，消费时才从磁盘读取到内存（懒加载）
-  1. 消费者保证
+    1. 生产者确认机制：Publisher Confirm机制（消息入队成功则返回ack，否则返回nack）
+    1. MQ可靠性
+        + 默认开启数据持久化（ps：消息持久化后才会返回给生产者ack）
+        + 默认开启LazyQueue：接收到消息直接存入磁盘，消费时才从磁盘读取到内存（懒加载）
+    1. 消费者保证
     1. 消费者确认机制
-      + **manual**：手动模式。需要调用api发送ack或reject
-      + **auto**：自动模式。基于aop，当业务正常执行时则自动返回ack；业务异常自动返回nack；消息处理或校验异常自动返回reject;
+        + **manual**：手动模式。需要调用api发送ack或reject
+        + **auto**：自动模式。基于aop，当业务正常执行时则自动返回ack；业务异常自动返回nack；消息处理或校验异常自动返回reject;
     1. 消费者重试机制：开启后，失败会再本地重试，重试达到最大次数后执行失败处理策略
-  1. 失败处理策略
+    1. 失败处理策略
     + ImmediateRequeueMessageRecoverer：重试耗尽后，返回nack，消息重新入队
     + RepublishMessageRecoverer：重试耗尽后，将失败消息投递到指定的交换机（死信队列）
 
 
 1. 延迟队列（需要使用插件，即声明交换机为延迟交换机）
-  ```java
+
+    ```java
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(name="delay.queue"),
             exchange = @Exchange(name = "delay.ec",type = ExchangeTypes.DIRECT,delayed = "true"), //设置为delay队列
@@ -52,12 +55,13 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504101114379
                 message.getMessageProperties().setHeader("x-delay",5000);//消息头设置延迟时间
                 return message;
             });  
-  ```
+    ```
 
 
 ### SpringAMQP的编写方式
 1. 注解配置消费者对应的队列和交换机
-  ```java
+
+    ```java
     @RabbitListener(bindings = @QueueBinding( //配置该消费者对应的队列和交换机以及队列订阅的key
             value = @Queue(name = "direct.queue"),
             exchange = @Exchange(name = "direct.exchange", type = ExchangeTypes.DIRECT),
@@ -77,28 +81,26 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504101114379
     }
 
 
-  //发布者发布格式一般就是指定[交换机],路由key(没有交换机时则队列名字)，消息Object（要定义序列化器，且类要实现了序列化接口Serializable）
-  rabbitTemplate.convertAndSend(exchange,key,message);
-  ```
+    //发布者发布格式一般就是指定[交换机],路由key(没有交换机时则队列名字)，消息Object（要定义序列化器，且类要实现了序列化接口Serializable）
+    rabbitTemplate.convertAndSend(exchange,key,message);
+    ```
 1. 定义消息转换器
-  ```java
-  @Bean
-  public MessageConverter messageConverter(){
-      // 1.定义消息转换器
-      Jackson2JsonMessageConverter jackson2JsonMessageConverter=new Jackson2JsonMessageConverter();
-      // 2.配置自动创建消息id，用于识别不同消息，也可以在业务中基于ID判断是否是重复消息
-      jackson2JsonMessageConverter.setCreateMessageIds(true);
-      return jackson2JsonMessageConverter;
-  }
-  ```
 
-
-
-
+    ```java
+    @Bean
+    public MessageConverter messageConverter(){
+        // 1.定义消息转换器
+        Jackson2JsonMessageConverter jackson2JsonMessageConverter=new Jackson2JsonMessageConverter();
+        // 2.配置自动创建消息id，用于识别不同消息，也可以在业务中基于ID判断是否是重复消息
+        jackson2JsonMessageConverter.setCreateMessageIds(true);
+        return jackson2JsonMessageConverter;
+    }
+    ```
 
 ### 附：RabbitMQ的Docker部署与整合配置
 #### Docker部署
 1. 基本部署
+
     ```shell
     docker pull rabbitmq:management
     docker run -d `
@@ -112,20 +114,24 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504101114379
     ```
 1. 添加DelayExchange延迟消息插件
     + 先下载[插件](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange)
+    + 然后执行如下命令
+
         ```shell
         docker cp rabbitmq_delayed_message_exchange-v4.0.7.ez rabbitmq:/plugins
         docker exec -it rabbitmq rabbitmq-plugins enable rabbitmq_delayed_message_exchange
-        ``` 
+        ```   
+
 #### 整合rabbitmq
 
 1. 导入AMQP依赖
-  ~~~xml
-  <!--AMQP依赖，包含RabbitMQ-->
-  <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-amqp</artifactId>
-  </dependency>
-  ~~~
+
+    ~~~xml
+    <!--AMQP依赖，包含RabbitMQ-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-amqp</artifactId>
+    </dependency>
+    ~~~
 
 1. application.yml配置
 
