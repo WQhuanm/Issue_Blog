@@ -13,6 +13,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412231400807
 >本文主要借鉴于Github的一个issue_blog项目：[yihong0618/gitblog](https://github.com/yihong0618/gitblog)
 
 + 在基于以往的Hexo博客部署的基础上，使用了Github：Action来自动部署，只需要把文章提交到issue（可以使用label打标签，使用milestone来归档），其他环节交给action即可
+
 #### 最终效果可参考
 >我的[Blog仓库](https://github.com/WQhuanm/Issue_Blog)以及[Blog网站](https://wqhuanm.github.io/Issue_Blog/)
 
