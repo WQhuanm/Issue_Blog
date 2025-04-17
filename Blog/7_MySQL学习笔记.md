@@ -1,6 +1,7 @@
 ---
 title: MySQL学习笔记
 date: 2025-02-21 04:28:59
+mathjax: true
 categories: 
     - MySQL
 tags: 
@@ -24,12 +25,25 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502211226091
 
 
 ### 日志系统
-+ 默认引擎InnoDB有专属日志：redo log（重做日志），具备crash-safe 能力
-+ server层也有自己的日志：binlog（归档日志）。
-+ 当有一条记录需要更新的时候，InnoDB 引擎就会先把记录写到 redo log，并更新内存，这个时候更新就算完成了。之后空闲再更新数据到磁盘
-+ 日志进行**两阶段提交**
-（WAL，Write-Ahead Logging）：它的关键点就是先写日志，再写磁盘。
-只有redolog执行完接着binlog完整写入，然后redolog再进行事务提交才算事务生效
+#### binlog（归档日志）
+1. 物理日志，追加写，记录原始语句
+1. 日志内容不足以提供crash-safe功能（
+    + 不具备恢复数据页的能力
+    + 无法判断日志哪些事务是刷盘，哪些没刷盘，如果重复刷入会污染数据（如多次insert）
+1. binlog刷盘策略：一般都是每次事务的 binlog 都持久化到磁盘
+#### redo log（重做日志）
+1. （WAL，Write-Ahead Logging）：对数据的修改：先写到内存，并记录到redo log日志（保证crash-safe），后续再把数据同步到磁盘
+1. redo log文件
+    + 一般配置一组4个文件，循环写入（write pos和check point）
+    + 文件内容是只写到内存，还未刷入磁盘的数据（保证宕机时可以用来重做）
+    + 如果redo log写满，此时必须阻塞mysql，把部分脏数据页刷盘，从而释放redolog
+    ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504171206589.png)
+1. redolog刷盘策略：一般都是选择提交事务时直接把redolog buffer的内容直接刷盘到redolog文件，而不是留在redolog buffer或page cache（os的文件缓存）
+
+1. **两阶段提交**
+    + 执行事务时，先记录到redolog（写在redolog buffer），标记为prepare
+    + 接着写入binlog
+    + 最后才把redolog标记为commit（写入redolog文件）并提交事务
 
 ### 事务
 #### 1. 事务支持是在引擎层面实现的。MySQL 是一个支持多引擎的系统，但并不是所有的引擎都支持事务。比如 MySQL 原生的 MyISAM 引擎就不支持事务，这也是 MyISAM 被 InnoDB 取代的重要原因之一。
