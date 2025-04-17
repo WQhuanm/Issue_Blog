@@ -1,6 +1,7 @@
 ---
 title: Spring学习笔记
 date: 2025-03-20 10:47:09
+mathjax: true
 categories: 
     - SpringBoot
 tags: 
@@ -15,6 +16,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
 1. 优点
     + 不再需要考虑一个类依赖其他类时要如何考虑依赖类的构造函数，只需要向IOC容器申请这个依赖类的实例即可
     + 对象之间的耦合度/依赖程度降低
+
 ##### 2.依赖注入（DI,Dependency Injection）(IOC思想的具体实现)
 1. Bean的3种注入方式
     + 构造函数注入：通过类的构造函数来注入依赖项（推荐，确保对象实例化时就注入，避免初始化时还未注入，属性却被引用导致空指针）
@@ -41,7 +43,10 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
     1. 销毁 Bean：把 Bean 的销毁方法先记录下来，将来需要销毁 Bean 或者销毁容器的时候，就调用这些方法去释放 Bean 所持有的资源。
 
 #### 2.AOP（Aspect oriented programming:面向切面编程）
-> AOP的使用可以参考[Spring AOP的使用](https://wqhuanm.github.io/Issue_Blog/2025/04/01/25_Spring.AOP%E7%9A%84%E4%BD%BF%E7%94%A8/)
+> AOP的使用可以参考[Spring AOP的使用]
+
+(https://wqhuanm.github.io/Issue_Blog/2025/04/01/25_Spring.AOP%E7%9A%84%E4%BD%BF%E7%94%A8/)
+
 1. spring AOP的实现
     + Spring AOP基于动态代理，低版本spring默认jdk代理，高版本默认CGLIB代理（JDK动态代理可能导致类型转换异常），没有专门导入AspecJ则使用的是Spring AOP。动态代理方式无侵入性，无需修改目标类。（Spring AOP只能拦截ioc容器里面的对象）
     + AspectJ AOP（编译时/类加载时增强，静态代理，字节码织入），运行时无代理开销，性能更高，但是在编译时修改目标类字节码，存在侵入性
@@ -87,6 +92,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
             }
         }
         ```
+
     + 一些细节问题如下
         1. proxy代理的原理是重写，在目标方法周围增加增强的逻辑，而目标方法的使用是直接调用目标方法去执行
         1. proxy无法代理目标类的final方法，因为代理的本质是重写
@@ -101,6 +107,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
                 + 动态代理不经过编译器修饰，是不会有前面添加的2步的，所以成员变量都是null
                 
     + Spring可以通过 AopContext.currentProxy()获取代理对象(前提是当前对象有被开启AOP代理，启动类要允许获取代理对象：@EnableAspectJAutoProxy(exposeProxy = true))
+
 1. AOP的通知类型
     + Before
     + After
