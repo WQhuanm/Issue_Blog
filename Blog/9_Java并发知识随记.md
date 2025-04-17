@@ -1,6 +1,7 @@
 ---
 title: Java并发知识随记
 date: 2025-02-27 06:11:21
+mathjax: true
 categories: 
     - Java
 tags: 
@@ -22,6 +23,8 @@ Thread thread = new Thread(() -> {
     System.out.println("Lambda实现了runnable函数接口");
 }, "线程1");
 ```
+
+
 #### 2. 线程的生命周期和状态
 1. 生命周期
     + NEW: 初始状态，线程被创建出来但没有被调用 start() 。
@@ -46,6 +49,8 @@ Thread thread = new Thread(() -> {
         + 如果一个线程处于sleep, wait, join 等**可响应中断的**阻塞状态时，若检测到当前线程是可中断的，则会响应抛出InterruptedException异常
             + 抛出异常后catch部分就是对中断逻辑的处理（直接退出，还是处理后继续执行后续代码）
             + 抛出异常后会把中断标记位设为false，以便后续可以继续响应中断
+
+
 ### 二、并发编程
 #### 1. 并发编程的三大特性
 + 原子性：Java只有简单的读取、赋值（而且必须是将数字赋值给某个基本数据类型的变量，变量之间的相互赋值不是原子操作）才是原子操作。
@@ -55,7 +60,9 @@ Thread thread = new Thread(() -> {
 #### 2. JMM（Java 内存模型）
 1. JMM规定了并发编程中的一些原则/规范
     1. JMM抽象了线程和主内存之间的关系：划分出了主内存和本地内存（定义线程间的交互规则）
+
         主内存：存储共享变量，所有线程创建的实例对象都存放在主内存中
+
         本地内存（不真实存在）：存储共享变量的副本。线程都有一个私有的本地内存，线程只能对本地内存的数据操作
     1. happens-before 原则（强调并发的可见性）
         + 为了对编译器和处理器的约束尽可能少，只要不改变程序的执行结果，编译器和处理器怎么进行重排序优化都行。
@@ -159,7 +166,8 @@ Thread thread = new Thread(() -> {
 
 
 #### 5. ThreadLocal（每个线程有专属本地变量）
-![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502262327509.png)
+    ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502262327509.png)
+    
 1. 原理
     + ThreadLocal有个静态内部类ThreadLocalMap（类似hashmap），以ThreadLocal为Key，Object为value，用Entry存取。一个线程每创建一个ThreadLocal可以存取一个变量副本
     + Thread有个ThreadLocalMap属性(初始为null)，ThreadLocal存入变量副本，是存入到当前Thread的ThreadLocalMap里面
