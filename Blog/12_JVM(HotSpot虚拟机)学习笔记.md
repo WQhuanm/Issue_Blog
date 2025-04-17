@@ -1,6 +1,7 @@
 ---
 title: JVM(HotSpot虚拟机)学习笔记
 date: 2025-03-09 12:58:56
+mathjax: true
 categories: 
     - Java
 tags: 
@@ -35,6 +36,8 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
 1. 初始化零值：初始化对象属性字段的默认值（不包括对象头）
 1. 设置对象头：把关于对象的设置（如对象哈希码，GC分代年龄等）的信息存放在对象头
 1. 执行init方法：即执行构造函数进行初始化
+
+
 #### 2. 对象的访问定位（reference如何找到目标对象）
 1. 句柄：从堆中划分一块内存作为句柄池，reference 中存储的就是对象的句柄地址，句柄中包含了对象实例数据（堆中的实例池）与对象类型数据（方法区）各自的具体地址信息。（优点，对象移动时，改变句柄的指针即可，无需修改reference）
 ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503091210524.png)
@@ -145,6 +148,8 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
 ### 五、类加载
 #### 1. 类的生命周期：
 ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503091909207.png)
+
+
 #### 2. 类加载过程：加载->连接->初始化
 1. 加载（由该类指向的类加载器实现）
     + 通过全类名获取定义此类的二进制字节流。
@@ -155,6 +160,8 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
 1. 解析：将常量池内的符号引用替换为直接引用（得到类或者字段、方法在内存中的指针或者偏移量）
 1. 初始化：加锁保证线程安全（会引起线程阻塞），只有类或其属性被访问，才会主动去初始化类
 1. 卸载：只有类不存在实例、不被引用、且其类加载器被GC（只有自定义类加载器会被GC），类才会被GC
+
+
 #### 3. 类加载器
 1. 加载规则：动态加载（使用时才加载），每个类只会被加载一次
 1. 只有2个类的全名相同，且其类加载器相同，JVM才认为是同一个类
