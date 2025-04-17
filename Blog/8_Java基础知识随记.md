@@ -1,6 +1,7 @@
 ---
 title: Java基础知识随记
 date: 2025-02-26 08:55:17
+mathjax: true
 categories: 
     - Java
 tags: 
@@ -13,10 +14,12 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
 1. Java访问修饰符为默认(default)是包级访问权限，只有包内的类才能访问，而不是public
 
 1. Java只有值传递，不存在C++的引用传递
-==比较值（基本类型的值是value，类的值是地址）,equal的比较一般是内容相等（但是Object的equal是=比较）
+
+    ==比较值（基本类型的值是value，类的值是地址）,equal的比较一般是内容相等（但是Object的equal是=比较）
 
 1. hashCode()用于快速判断元素之间相等，减少equla调用。hash相等才用equal判断是否真相等而非hash冲突。
-重写 equals() 时必须重写 hashCode() 方法
+    
+    重写 equals() 时必须重写 hashCode() 方法
 
 1. 包装类保存的基本类型的值都是final，每次赋值都是重新new
 
