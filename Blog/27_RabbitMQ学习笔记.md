@@ -135,5 +135,27 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202504101114379
 
 1. application.yml配置
 
+    ```yml
+    spring:
+        rabbitmq:
+            host: localhost
+            port: 5672
+            virtual-host: / #rabbitmq的虚拟主机
+            username: admin
+            password: 1234
+            connection-timeout: 1s # 设置MQ的连接超时时间
+            publisher-confirm-type: correlated # 开启publisher confirm机制，类型为异步回调返回
+            listener:
+            simple:
+                prefetch: 5 # 每次只能获取5条消息，处理完成才能获取下一个消息
+                acknowledge-mode: auto # 开启消费者确认机制，自动模式
+                retry:
+                enabled: true # 开启消费者失败重试
+                initial-interval: 1000ms # 初始的失败等待时长为1秒
+                multiplier: 1 # 失败的等待时长倍数，下次等待时长 = multiplier * last-interval
+                max-attempts: 3 # 最大重试次数
+                stateless: true # true无状态；false有状态。如果业务中包含事务，这里改为false
+
+    ```
 
 
