@@ -102,7 +102,7 @@ class Test {
     LinkedHashSet 的底层数据结构是LinkedHashMap，链表维护元素的插入顺序，能按照添加顺序遍历输出
 
     TreeSet 的底层数据结构是红黑树
-    
+
 1. HashMap单独坐一桌：
     1. 由数组+链表/红黑树 组成的（链表长>7且数组长度>63，转换为红黑树）。
         + 元素是Node<K,V>,红黑树的结点TreeNode继承自Node，使得可以用迭代器遍历map所有结点
@@ -169,5 +169,5 @@ class Test {
         + CGLIB动态代理：通过字节码生成库（如 ASM）动态创建目标类的子类。只能代理public且**非final**的方法/类
 
 ### 参考文章
-[Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析](https://javadoop.com/post/hashmap)
++ [Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析](https://javadoop.com/post/hashmap)
 
