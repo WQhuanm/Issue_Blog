@@ -9,6 +9,7 @@ tags:
 cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203.jpeg
 ---
 
+
 ### Spring
 #### 1.IOC（Inversion of Control:控制反转）
 ##### 1.定义
@@ -43,14 +44,13 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
     1. 销毁 Bean：把 Bean 的销毁方法先记录下来，将来需要销毁 Bean 或者销毁容器的时候，就调用这些方法去释放 Bean 所持有的资源。
 
 #### 2.AOP（Aspect oriented programming:面向切面编程）
-> AOP的使用可以参考[Spring AOP的使用]
-
-(https://wqhuanm.github.io/Issue_Blog/2025/04/01/25_Spring.AOP%E7%9A%84%E4%BD%BF%E7%94%A8/)
+> AOP的使用可以参考[Spring AOP的使用](https://wqhuanm.github.io/Issue_Blog/2025/04/01/25_Spring.AOP%E7%9A%84%E4%BD%BF%E7%94%A8/)
 
 1. spring AOP的实现
     + Spring AOP基于动态代理，低版本spring默认jdk代理，高版本默认CGLIB代理（JDK动态代理可能导致类型转换异常），没有专门导入AspecJ则使用的是Spring AOP。动态代理方式无侵入性，无需修改目标类。（Spring AOP只能拦截ioc容器里面的对象）
     + AspectJ AOP（编译时/类加载时增强，静态代理，字节码织入），运行时无代理开销，性能更高，但是在编译时修改目标类字节码，存在侵入性
     + 基于CGLIB生成代理子类proxy例子如下：
+
         ``` java
         public UserService$$EnhancerBySpringCGLIB extends UserService {//CGLIB生成的代理类
             UserService target;//目标类
@@ -180,6 +180,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
 1. Spring-Starter实现
     1. 创建starter工程，导入必要依赖
         ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503201838715.png)
+
         ``` xml
         //定义了该包install后的starter名字/组别/版本
         <groupId>org.learn</groupId>
@@ -192,6 +193,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
         </dependency>
         ```
     1. 编写自动配置类和业务类
+
         ``` java
         @Configuration//定义自动配置类
         public class AutoConfiguration {
@@ -208,6 +210,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
         }
         ```
     1. 在resource/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports下配置我们的配置类的全类名
+    
         ``` imports
         com.example.AutoConfiguration
         ```
