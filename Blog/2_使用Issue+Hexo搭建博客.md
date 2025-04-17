@@ -15,15 +15,15 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412231400807
 
 + 在基于以往的Hexo博客部署的基础上，使用了Github：Action来自动部署，只需要把文章提交到issue（可以使用label打标签，使用milestone来归档），其他环节交给action即可
 
-#### 最终效果可参考我的[Blog仓库](https://github.com/WQhuanm/Issue_Blog)以及[Blog网站](https://wqhuanm.github.io/Issue_Blog/)
+#### 最终效果可参考
+我的[Blog仓库](https://github.com/WQhuanm/Issue_Blog)以及[Blog网站](https://wqhuanm.github.io/Issue_Blog/)
 
 ### 一，配置Blog repo：
 clone这个[仓库](https://github.com/WQhuanm/Issue_Blog.git)到你想用来建立博客的仓库
 
-这份博客运作的核心有三:
-
-1. main.py: 内含生成readme的逻辑
-2. generate_readme.yml: 通过action自动调用main.py生成readme
+这份博客运作的核心有三:  
+1. main.py: 内含生成readme的逻辑  
+2. generate_readme.yml: 通过action自动调用main.py生成readme  
 3. generate_page.yml: 在readme生成后，将博客部署到Gitpage网站
 
 #### 必须执行的操作(require)
@@ -162,11 +162,7 @@ readme会根据你打的label对你的博客进行分类
  ```
 
 ### 参考文章:
-[这个博客开源了](https://github.com/yihong0618/gitblog/issues/177)
-
-[使用 GitHub Issues 来写博客，真香。](https://xie.infoq.cn/article/f89ea3ba86724ef568880ad04)
-
-[jsDelivr和Github配合才是最佳免费CDN，五分钟学会使用，附搭建免费图床教程](https://blog.csdn.net/weixin_44786530/article/details/129851540)
-
-
+[这个博客开源了](https://github.com/yihong0618/gitblog/issues/177)  
+[使用 GitHub Issues 来写博客，真香。](https://xie.infoq.cn/article/f89ea3ba86724ef568880ad04)  
+[jsDelivr和Github配合才是最佳免费CDN，五分钟学会使用，附搭建免费图床教程](https://blog.csdn.net/weixin_44786530/article/details/129851540)  
 [加快GitHub Pages国内访问速度](https://zu1k.com/posts/coding/speedup-github-page/#%E4%BD%BF%E7%94%A8-cdn)
