@@ -33,11 +33,15 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202501262318741
 + BGSAVE使用子进程执行（默认使用），SAVE使用主线程执行，会阻塞其他命令
     + BGSAVE快照核心：fock的写时复制
     + 写时复制存在的问题：如果修改大key，主进程需要大量时间阻塞来复制新内存页
+
 #### 2. AOF（append-only file,只追加文件 ）
 + AOF 持久化会把所有更改 Redis 中的数据的命令写入到 AOF文件（执行完命令再写入，避免写入时阻塞当前命令）
 + 持久化方式（fsync策略）
+
     appendfsync always：每次write写到系统内核缓冲区后，会立刻把数据同步到磁盘的AOF文件
+
     appendfsync everysec：write完立即返回，fsync每秒同步一次 AOF 文件
+
     appendfsync no：write完立即返回，让操作系统决定何时进行同步
 + 工作流程
     + 所有的写命令会追加（append）到 AOF 缓冲区中
@@ -50,6 +54,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202501262318741
     + 当 Redis 重启时，可以加载 AOF 文件进行数据恢复（重启加载,load），恢复需要依次执行每个写命令日志的命令，速度慢，因此不建议单独使用
 + AOF 校验机制：校验和（checksum，使用CRC64），checksum存在于AOF文件尾部来检验
 + 开启AOF时优先使用AOF来还原数据库
+
 #### 3. RDB 和 AOF 的混合持久化
 + 修改了原本重写AOF的流程
 + fork 的重写子进程会先将与主线程共享的内存数据以 RDB 方式写入到 AOF 文件，期间主线程的操作写在重写缓冲区
