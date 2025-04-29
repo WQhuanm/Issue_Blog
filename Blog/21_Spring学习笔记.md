@@ -149,7 +149,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
 
 1. 过滤器（Filter）和拦截器（Interceptor）的区别
     ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503201311670.png)
-    + Filter基于servlet，基于方法回调实现（决定是否把资源释放给下一个filter
+    + Filter基于servlet，基于方法回调实现（责任链模式，dofilter传参会传递责任链，被调用者处理后由它决定是否使用传参给他的责任链往下继续）
     + Interceptor基于Spring，基于动态代理实现
 
 #### 5.Spring的启动流程
