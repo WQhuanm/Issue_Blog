@@ -10,7 +10,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
 ---
 
 
-### 1. 基础知识
+### 基础知识
 1. Java访问修饰符为默认(default)是包级访问权限，只有包内的类才能访问，而不是public
 
 1. Java只有值传递，不存在C++的引用传递
@@ -27,14 +27,25 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502261916407
     ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502241948581.png) 
     1. String的值是final，不可变，对其修改/拼接等操作是new String()给他指向
     1. String.intern()：如果常量池中已经存在相同内容的字符串，则返回常量池中已有对象的引用；否则，将该字符串添加到常量池并返回其引用。
-    
-1. 异常(Exception) :程序本身可以处理的异常，可以通过 catch 来进行捕获。
-    1. 分为 Checked Exception (受检查异常，必须处理) 和 Unchecked Exception (不受检查异常，即使不处理不受检查异常也可以正常通过编译)。
-    1. 除了RuntimeException及其子类以外，其他的Exception类及其子类都属于受检查异常 。如IO异常
-    1. 静态代码块的异常
-        + 原则上不允许静态代码块出现异常，如果真的出现，应该直接catch处理掉
-        + 静态代码块是在类加载的时候就执行了，而执行的过程中，如果出现错误，那么这个类就初始化失败。
-        + 当类初始化失败时，任何使用该类的代码都可能抛出 ExceptionInInitializerError。
+
+
+1. 方法回调（CallBack）：解耦逻辑、提高复用和可扩展性。思想如下
+    + 函数A执行需要调用函数B，对于B的执行结果，A会把相应的处理逻辑封装成函数接口（称为：回调函数）
+    + 在调用B时，A同时传递回调函数，B在执行时，会自己决定何时使用回调函数
+    + 好处是当多个不同函数调用B，各自实现自身的回调函数，即可复用函数B
+
+
+#### 异常(Exception) :程序本身可以处理的异常，可以通过 catch 来进行捕获。
+##### 分类
+1. 分为 Checked Exception (受检查异常，必须处理) 和 Unchecked Exception (不受检查异常，即使不处理不受检查异常也可以正常通过编译)。
+1. 除了RuntimeException及其子类以外，其他的Exception类及其子类都属于受检查异常 。如IO异常
+1. 静态代码块的异常
+    + 原则上不允许静态代码块出现异常，如果真的出现，应该直接catch处理掉
+    + 静态代码块是在类加载的时候就执行了，而执行的过程中，如果出现错误，那么这个类就初始化失败。
+    + 当类初始化失败时，任何使用该类的代码都可能抛出 ExceptionInInitializerError。
+
+
+
 
 #### 反射
 ##### 1. 通过反射能绕过访问权限获取私有字段/方法
@@ -84,7 +95,7 @@ class Test {
 ```
 
 
-### 2. Java 集合
+### Java 集合
 1. 数组和链表的区别
     + 数组访问速度快，但插入删除慢，且内存必须连续，可能存在空间浪费或不足无法扩展
     + 链表插入速度快，可以动态开辟空间，适合频繁增删改，但是访问速度慢（内存分配、垃圾回收等无需随机访问的经常使用）
@@ -136,7 +147,7 @@ class Test {
     + get：如果get的桶是MOVED状态，说明数据已经迁移到新table，去新table查找，否则查找旧table
 1. LinkedHashMap 继承自 HashMap，并在 HashMap 基础上维护一条双向链表，支持遍历时会按照插入顺序有序进行迭代。
 
-### 3.设计模式
+### 设计模式
 1. 单例模式（确保一个类只有一个实例）
     + 双重检验锁方式实现
     ```java
@@ -170,5 +181,6 @@ class Test {
 
 ### 参考文章
 [Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析](https://javadoop.com/post/hashmap)   
-[设计模式也可以这么简单](https://javadoop.com/post/design-pattern)
+[设计模式也可以这么简单](https://javadoop.com/post/design-pattern)   
+[JAVA回调机制(CallBack)详解](https://www.cnblogs.com/heshuchao/p/5376298.html#!comments)   
 
