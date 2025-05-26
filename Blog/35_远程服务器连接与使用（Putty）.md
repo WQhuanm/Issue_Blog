@@ -6,10 +6,11 @@ categories:
     - CS技术
 tags: 
     - CS技术
-cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910.png
+cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270032825.png
 ---
 
-1. 桌面机到远程服务器的连接：Putty
+
+ 1. 桌面机到远程服务器的连接：Putty
     1. Putty的pageant.exe 添加证书CAPI Cert（证书用yubikey安装）
     1. 与跳板机建立连接（如果需要的话）
         + 在session设置跳板机ip（默认端口22）
