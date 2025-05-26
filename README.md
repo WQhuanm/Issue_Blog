@@ -5,17 +5,18 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 - [使用Issue+Hexo搭建博客](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 - [About me](https://github.com/WQhuanm/Issue_Blog/issues/1)--2024-12-22
 ## 最近更新
+- [远程服务器连接与使用（Putty）](https://github.com/WQhuanm/Issue_Blog/issues/35)--2025-05-26
 - [git常用命令随记](https://github.com/WQhuanm/Issue_Blog/issues/34)--2025-05-20
 - [分布式经典理论及算法一览](https://github.com/WQhuanm/Issue_Blog/issues/33)--2025-04-28
 - [网易互娱二面（4.11）](https://github.com/WQhuanm/Issue_Blog/issues/32)--2025-04-17
 - [基数估算（count-distinct problem）](https://github.com/WQhuanm/Issue_Blog/issues/31)--2025-04-15
-- [柠檬微趣一面（4.3）](https://github.com/WQhuanm/Issue_Blog/issues/30)--2025-04-14
 ## CS基础
 - [分布式经典理论及算法一览](https://github.com/WQhuanm/Issue_Blog/issues/33)--2025-04-28
 - [基数估算（count-distinct problem）](https://github.com/WQhuanm/Issue_Blog/issues/31)--2025-04-15
 - [下次要是面试官还拷打我红黑树的实现，我就要掏出这个了！！！](https://github.com/WQhuanm/Issue_Blog/issues/15)--2025-03-13
 - [计算机基础学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/14)--2025-03-12
 ## CS技术
+- [远程服务器连接与使用（Putty）](https://github.com/WQhuanm/Issue_Blog/issues/35)--2025-05-26
 - [Docker的使用](https://github.com/WQhuanm/Issue_Blog/issues/26)--2025-04-07
 ## GitHub
 - [git常用命令随记](https://github.com/WQhuanm/Issue_Blog/issues/34)--2025-05-20
