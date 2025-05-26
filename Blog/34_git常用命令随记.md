@@ -27,6 +27,8 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910
 
 1. git commit -m "message" :将暂存区的更改提交到本地仓库，并添加提交信息
 
+1. git fetch :获取远程仓库的最新数据，但不修改本地分支
+
 1. git pull [远程仓库名] [分支名] :从远程获取最新提交并尝试合并本地版本
     + 远程仓库名一般是默认的origin
 
