@@ -6,8 +6,9 @@ categories:
     - GitHub
 tags: 
     - GitHub
-cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910.png
+cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578.png
 ---
+
 
 ### 远程仓库的链接
 1. git clone <url>
