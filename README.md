@@ -5,11 +5,11 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 - [使用Issue+Hexo搭建博客](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 - [About me](https://github.com/WQhuanm/Issue_Blog/issues/1)--2024-12-22
 ## 最近更新
+- [Systemd 常用命令](https://github.com/WQhuanm/Issue_Blog/issues/36)--2025-05-27
 - [远程服务器连接与使用（Putty）](https://github.com/WQhuanm/Issue_Blog/issues/35)--2025-05-26
 - [git常用命令随记](https://github.com/WQhuanm/Issue_Blog/issues/34)--2025-05-20
 - [分布式经典理论及算法一览](https://github.com/WQhuanm/Issue_Blog/issues/33)--2025-04-28
 - [网易互娱二面（4.11）](https://github.com/WQhuanm/Issue_Blog/issues/32)--2025-04-17
-- [基数估算（count-distinct problem）](https://github.com/WQhuanm/Issue_Blog/issues/31)--2025-04-15
 ## CS基础
 - [分布式经典理论及算法一览](https://github.com/WQhuanm/Issue_Blog/issues/33)--2025-04-28
 - [基数估算（count-distinct problem）](https://github.com/WQhuanm/Issue_Blog/issues/31)--2025-04-15
@@ -30,6 +30,8 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 ## Life
 - [笔试、笔试、笔试/(ㄒoㄒ)/~~](https://github.com/WQhuanm/Issue_Blog/issues/17)--2025-03-15
 - [终于要开始面试挑战了吗......有点意思😊](https://github.com/WQhuanm/Issue_Blog/issues/11)--2025-03-06
+## Linux
+- [Systemd 常用命令](https://github.com/WQhuanm/Issue_Blog/issues/36)--2025-05-27
 ## MyBatis
 - [Mybatis编码随记](https://github.com/WQhuanm/Issue_Blog/issues/6)--2025-02-19
 ## MySQL
