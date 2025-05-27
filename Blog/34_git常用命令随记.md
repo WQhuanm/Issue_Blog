@@ -15,12 +15,11 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
 
 1. git switch [-c] <new-branch-name> :切换分支
     + -c：可选，会尝试创建当前不存在的新分支
+    + 旧版命令为：git checkout [-b] <new-branch_name>
 
 1. git branch [-r/-a]:查看本地所有分支
     + -r :可选，查看远程分支
     + -a :可选，查看本地和远程所有分支
-
-
 
 ### 文件提交流程
 1. git add [filename] :对指定文件添加到暂存区
@@ -37,7 +36,9 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
 
 ### 文件/提交 tips
 1. git restore [--staged] [filename] :将指定文件恢复到暂存区/最新提交的状态
+    + 上述命令的旧版写法是：git checkout -- [filename]
     + --staged :可选，将指定文件在暂存区的缓存删除
+
 
 1. git rebase -i :在变基过程中编辑、删除或合并提交
     + pick：保留提交
@@ -48,3 +49,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
     + drop：删除提交
 
 1. git log :查看历史commit记录
+
+1. git reset [--hard] HEAD :清空暂存区
+    + --hard :将本地仓库回溯到最近一次提交
+
