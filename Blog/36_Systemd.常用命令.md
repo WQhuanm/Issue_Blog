@@ -12,7 +12,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910
 
 
 ### systemctl
-1. systemctl start/stop/restart/status <service_name> :用于服务管理
+1. systemctl start/stop/restart/status/cat <service_name> :用于服务管理
 
 1. systemctl enable/disable/is-enable <service_name> :设置服务自启动
 
