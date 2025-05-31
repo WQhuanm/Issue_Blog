@@ -21,6 +21,10 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
     + -r :可选，查看远程分支
     + -a :可选，查看本地和远程所有分支
 
+1. git init :初始本地仓库
+
+1. git remote add [远程仓库名] [分支名] :添加一个新的远程仓库到本地（仓库名一般是origin）
+
 ### 文件提交流程
 1. git add [filename] :对指定文件添加到暂存区
     + add . :把所有已修改文件添加到暂存区
