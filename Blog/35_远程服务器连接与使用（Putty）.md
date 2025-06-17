@@ -23,5 +23,5 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270032825
             + 发送到代理的命令: plink -P %proxyport %user@%proxyhost -nc %host:%port
 
 1. 桌面机与服务器的文件传输：pscp
-    + pscp [options] 本地文件位置/远程服务器文件位置 远程服务器文件位置/本地文件位置
+    + pscp [options] 本地文件位置/远程服务器文件位置 远程服务器文件位置/本地文件位置（远程服务器位置需要Putty设置的Save Sessions作为前缀，如： remote_server:/bin/
         + -r:递归复制，复制整个目录
