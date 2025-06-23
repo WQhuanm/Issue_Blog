@@ -5,11 +5,11 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 - [使用Issue+Hexo搭建博客](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 - [About me](https://github.com/WQhuanm/Issue_Blog/issues/1)--2024-12-22
 ## 最近更新
+- [DEBUG：libfaketime在java项目中不生效的问题](https://github.com/WQhuanm/Issue_Blog/issues/38)--2025-06-23
 - [Junit 单元测试](https://github.com/WQhuanm/Issue_Blog/issues/37)--2025-06-17
 - [Systemd 常用命令](https://github.com/WQhuanm/Issue_Blog/issues/36)--2025-05-27
 - [远程服务器连接与使用（Putty）](https://github.com/WQhuanm/Issue_Blog/issues/35)--2025-05-26
 - [git常用命令随记](https://github.com/WQhuanm/Issue_Blog/issues/34)--2025-05-20
-- [分布式经典理论及算法一览](https://github.com/WQhuanm/Issue_Blog/issues/33)--2025-04-28
 ## CS基础
 - [分布式经典理论及算法一览](https://github.com/WQhuanm/Issue_Blog/issues/33)--2025-04-28
 - [基数估算（count-distinct problem）](https://github.com/WQhuanm/Issue_Blog/issues/31)--2025-04-15
@@ -18,19 +18,27 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 ## CS技术
 - [远程服务器连接与使用（Putty）](https://github.com/WQhuanm/Issue_Blog/issues/35)--2025-05-26
 - [Docker的使用](https://github.com/WQhuanm/Issue_Blog/issues/26)--2025-04-07
+## DEBUG
+- [DEBUG：libfaketime在java项目中不生效的问题](https://github.com/WQhuanm/Issue_Blog/issues/38)--2025-06-23
 ## GitHub
 - [git常用命令随记](https://github.com/WQhuanm/Issue_Blog/issues/34)--2025-05-20
 - [使用Issue+Hexo搭建博客](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 ## Java
+- [DEBUG：libfaketime在java项目中不生效的问题](https://github.com/WQhuanm/Issue_Blog/issues/38)--2025-06-23
 - [下次要是面试官还拷打我红黑树的实现，我就要掏出这个了！！！](https://github.com/WQhuanm/Issue_Blog/issues/15)--2025-03-13
 - [JVM(HotSpot虚拟机)学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/12)--2025-03-09
 - [Java并发知识随记](https://github.com/WQhuanm/Issue_Blog/issues/9)--2025-02-27
 - [Java基础知识随记](https://github.com/WQhuanm/Issue_Blog/issues/8)--2025-02-26
+<details><summary>显示更多</summary>
+
 - [登录认证的几种基本方式](https://github.com/WQhuanm/Issue_Blog/issues/3)--2025-01-26
+</details>
+
 ## Life
 - [笔试、笔试、笔试/(ㄒoㄒ)/~~](https://github.com/WQhuanm/Issue_Blog/issues/17)--2025-03-15
 - [终于要开始面试挑战了吗......有点意思😊](https://github.com/WQhuanm/Issue_Blog/issues/11)--2025-03-06
 ## Linux
+- [DEBUG：libfaketime在java项目中不生效的问题](https://github.com/WQhuanm/Issue_Blog/issues/38)--2025-06-23
 - [Systemd 常用命令](https://github.com/WQhuanm/Issue_Blog/issues/36)--2025-05-27
 ## MyBatis
 - [Mybatis编码随记](https://github.com/WQhuanm/Issue_Blog/issues/6)--2025-02-19
