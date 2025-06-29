@@ -2,9 +2,8 @@
 title: Junit 单元测试
 date: 2025-06-17 03:59:23
 mathjax: true
-cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910.png
+cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202506292029993.png
 ---
-
 
 ### JUnit4
 #### 常用注解
@@ -134,3 +133,4 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910
 [单元测试 - JUnit4 详解](https://www.pdai.tech/md/develop/ut/dev-ut-x-junit.html#%E6%B5%8B%E8%AF%95-%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95)  
 [JUnit 5参数化方法测试（一）](https://zhuanlan.zhihu.com/p/262508766)  
 [JUnit 5 用户指南](https://junit.java.net.cn/junit5/docs/current/user-guide/#overview)  
+
