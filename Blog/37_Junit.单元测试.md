@@ -2,6 +2,10 @@
 title: Junit 单元测试
 date: 2025-06-17 03:59:23
 mathjax: true
+categories: 
+    - Java
+tags: 
+    - Java
 cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202506292029993.png
 ---
 
@@ -10,6 +14,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202506292029993
 + @Test：声明为测试方法，方法要求为**public void**且**throws Exception**
 + @BeforeClass/@AfterClass：在调用该类的测试方法前/后，统一执行一次
 + @Before/@After：在调用每个测试方法前/后，都会执行一次
+
 
 #### @RunWith(xxx.class)：声明该测试类的运行器为xxx，未显式声明则使用默认
 + Parameterized.class：参数运行器，配合@Parameters使用junit的参数化测试功能
