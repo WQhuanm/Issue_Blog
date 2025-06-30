@@ -17,9 +17,10 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
     + -c：可选，会尝试创建当前不存在的新分支
     + 旧版命令为：git checkout [-b] <new-branch_name>
 
-1. git branch [-r/-a]:查看本地所有分支
-    + -r :可选，查看远程分支
-    + -a :可选，查看本地和远程所有分支
+1. git branch :查看本地所有分支
+    + -r ：查看远程分支
+    + -a ：查看本地和远程所有分支
+    + -d [branch_name]：删除本地分支
 
 1. git init :初始本地仓库
 
