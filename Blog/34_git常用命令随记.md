@@ -13,8 +13,8 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
 ### 远程仓库的链接
 1. git clone <url>
 
-1. git switch [-c] <new-branch-name> :切换分支
-    + -c：可选，会尝试创建当前不存在的新分支
+1. git switch  [branch-name] :切换分支
+    + -c [local_branch_name] [remote_branch_name]：基于指定的远程分支（不指定则默认主分支）创建本地分支
     + 旧版命令为：git checkout [-b] <new-branch_name>
 
 1. git branch :查看本地所有分支
