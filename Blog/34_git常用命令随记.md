@@ -15,12 +15,14 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
 
 1. git switch  [branch-name] :切换分支
     + -c [local_branch_name] [remote_branch_name]：基于指定的远程分支（不指定则默认主分支）创建本地分支
-    + 旧版命令为：git checkout [-b] <new-branch_name>
+    + 旧版命令为：git checkout [-b] [local_branch_name] [remote_branch_name，可选]
 
 1. git branch :查看本地所有分支
     + -r ：查看远程分支
     + -a ：查看本地和远程所有分支
     + -d [branch_name]：删除本地分支
+    + -m [old_branch_name] [new_branch_name]: 更改本地分支名
+    + -vv ：列出所有本地分支及其跟踪的远程分支
 
 1. git init :初始本地仓库
 
@@ -38,6 +40,13 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
     + 远程仓库名一般是默认的origin
 
 1. git push [远程仓库名] [分支名] :将本地提交推送到远程仓库
+    + -u :推送同时将本地分支追踪仓库改为此远程仓库
+
+### 本地，远程分支间的交互
+1. git status :显示当前所在本地分支，以及其追踪的远程分支
+
+1. git branch --set-upstream-to=[remote_branch_name] [local_branch_name] :切换本地追踪的远程分支
+
 
 ### 文件/提交 tips
 1. git restore [--staged] [filename] :将指定文件恢复到暂存区/最新提交的状态
