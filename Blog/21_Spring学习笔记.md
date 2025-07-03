@@ -28,6 +28,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502172200203
     + @Autowired 是 Spring 提供的注解，@Resource 是 JDK 提供的注解。
     + @Autowired：默认使用 byType（根据接口去寻找实现类），如果接口有多个实现类，使用byName（根据名称进行匹配）
     + @Resource：默认使用byName。无法名称匹配到Bean则注入方式会变为byType。
+    + 如果一个接口的多个实现类的某一个使用了@Primary注解，则在未显示声明时，优先注入该实现类
 ##### 3.Bean
 1. Bean 的作用域
     + singleton（默认）: IoC 容器中只有唯一的 bean 实例
