@@ -30,7 +30,9 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202506292029993
 只能模拟公共方法，私有方法不可模拟
 
 + 创建Mock对象时需要传入目标类
-+ 用>>模拟方法：形如 dao.getid(_,_ as String) >> [id1,id2]（dao 必须是被mock的对象，>> 右侧为模拟方法返回的值，这里是数组）
++ 用>>模拟方法,右侧是一个闭包（值/方法）
+    + 形如 dao.getid(_,_ as String) >> [id1,id2]（这里闭包是数组）
+    + 闭包可以是自定义函数(类似lambda)，可以获取方法的参数，如 dao.getid(_,_ as String)>>{int id ,String name -> id == 123}
 + _代表一个任意类型、任意值的参数,也可以使用as指定其类型
 + 若要模拟多次值
     + 可使用多个>>即可，如：dao.getid(_) >> res1 >> res2
