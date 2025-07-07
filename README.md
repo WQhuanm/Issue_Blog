@@ -5,11 +5,11 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 - [使用Issue+Hexo搭建博客](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 - [About me](https://github.com/WQhuanm/Issue_Blog/issues/1)--2024-12-22
 ## 最近更新
+- [Linux 常用命令](https://github.com/WQhuanm/Issue_Blog/issues/41)--2025-07-07
 - [配置ssh服务于免密登录](https://github.com/WQhuanm/Issue_Blog/issues/40)--2025-06-29
 - [Spock单元测试](https://github.com/WQhuanm/Issue_Blog/issues/39)--2025-06-29
 - [DEBUG：libfaketime在java项目中不生效的问题](https://github.com/WQhuanm/Issue_Blog/issues/38)--2025-06-23
 - [Junit 单元测试](https://github.com/WQhuanm/Issue_Blog/issues/37)--2025-06-17
-- [Systemd 常用命令](https://github.com/WQhuanm/Issue_Blog/issues/36)--2025-05-27
 ## CS基础
 - [分布式经典理论及算法一览](https://github.com/WQhuanm/Issue_Blog/issues/33)--2025-04-28
 - [基数估算（count-distinct problem）](https://github.com/WQhuanm/Issue_Blog/issues/31)--2025-04-15
@@ -41,6 +41,7 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 - [笔试、笔试、笔试/(ㄒoㄒ)/~~](https://github.com/WQhuanm/Issue_Blog/issues/17)--2025-03-15
 - [终于要开始面试挑战了吗......有点意思😊](https://github.com/WQhuanm/Issue_Blog/issues/11)--2025-03-06
 ## Linux
+- [Linux 常用命令](https://github.com/WQhuanm/Issue_Blog/issues/41)--2025-07-07
 - [DEBUG：libfaketime在java项目中不生效的问题](https://github.com/WQhuanm/Issue_Blog/issues/38)--2025-06-23
 - [Systemd 常用命令](https://github.com/WQhuanm/Issue_Blog/issues/36)--2025-05-27
 ## MyBatis
