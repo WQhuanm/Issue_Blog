@@ -64,7 +64,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910
 1. grep [-o] [模式] [file] ：文本搜索/过滤(grep,Global Regular Expression Print)
     + 模式一般是指定的搜索文本，或者正则表达式
         + 若模式以-开头(忽略包裹的"")，需要使用 -- 与 -o 的选项分隔 ：grep [-o] -- [模式]
-    + file为grep处理的文本(逐行处理)，也可通过管道 | 处理上一个命令的输出
+    + file为grep处理的文本(逐行处理)，也可通过管道 | 处理上一个命令的输出（管道|可将左侧输出作为右侧的输入）
     + 常用参数
         + -i ：忽略大小写
         + -v ：反转，显示不符合条件的
