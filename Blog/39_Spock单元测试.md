@@ -27,6 +27,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202506292029993
 #### Mock
 > 被mock的对象，会记录所以与它进行的交互，用于拦截目标对象方法的调用  
 被mock对象的所有方法被调用时，如果没有模拟，则会返回方法返回类型的默认值
+只能模拟公共方法，私有方法不可模拟
 
 + 创建Mock对象时需要传入目标类
 + 用>>模拟方法：形如 dao.getid(_,_ as String) >> [id1,id2]（dao 必须是被mock的对象，>> 右侧为模拟方法返回的值，这里是数组）
