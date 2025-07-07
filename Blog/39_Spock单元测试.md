@@ -34,7 +34,9 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202506292029993
 + 若要模拟多次值
     + 可使用多个>>即可，如：dao.getid(_) >> res1 >> res2
     + 或者使用>>>，用数组包裹：dao.getId(_) >>> [ res1 , res2]
-+ 交互计数：用于断言方法被调用了多少次，如 2 * dao.getid(_) >> res 判断是否使用2次
++ 交互计数：用于断言方法被调用了多少次
+    + 如 2 * dao.getid(_) >> res 判断是否使用2次
+    + 0 * _ 表示除了显示计数的方法外，其余方法应该被调用0次
 
 #### Spy
 > Spy的对象默认调用方法都使用真实方法，除非方法被模拟，模拟方式同Mock
