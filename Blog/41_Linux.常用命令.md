@@ -28,7 +28,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910
     + -f(--force)：强制操作，不提示
     + -v(--verbose)：显示操作过程
 
-1. cp ：复制目录/文件
+1. cp [source] [target]：复制目录/文件
     + -r(--recursive)：递归复制
     + -f(--force)：强制操作，不提示
     + -v(--verbose)：显示操作过程
