@@ -32,10 +32,16 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202506292030204
 
 ### 配置文件 :TODO
 
+
+
 #### Service
 1. 常用参数
     + AmbientCapabilities=CAP_NET_BIND_SERVICE ：允许非root用户使用特权端口(1~1024)，默认下systemd管理用户不是root，则无法使用特权端口
 
+#### 启用 Systemd 服务
+1. 将service文件放于特定目录（如：/usr/lib/systemd/system/）
+1. 重新加载 systemd 配置：sudo systemctl daemon-reload
+1. 服务设置为开机自启：sudo systemctl enable [service文件]
 
 ### 参考
 [Systemd 入门教程：命令篇](https://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)  
