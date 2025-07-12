@@ -5,12 +5,13 @@ if you want to build your blog site this way,you can refer to this [blog](https:
 - [使用Issue+Hexo搭建博客](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 - [About me](https://github.com/WQhuanm/Issue_Blog/issues/1)--2024-12-22
 ## 最近更新
+- [saml认证](https://github.com/WQhuanm/Issue_Blog/issues/42)--2025-07-12
 - [Linux 常用命令](https://github.com/WQhuanm/Issue_Blog/issues/41)--2025-07-07
 - [配置ssh服务于免密登录](https://github.com/WQhuanm/Issue_Blog/issues/40)--2025-06-29
 - [Spock单元测试](https://github.com/WQhuanm/Issue_Blog/issues/39)--2025-06-29
 - [DEBUG：libfaketime在java项目中不生效的问题](https://github.com/WQhuanm/Issue_Blog/issues/38)--2025-06-23
-- [Junit 单元测试](https://github.com/WQhuanm/Issue_Blog/issues/37)--2025-06-17
 ## CS基础
+- [saml认证](https://github.com/WQhuanm/Issue_Blog/issues/42)--2025-07-12
 - [分布式经典理论及算法一览](https://github.com/WQhuanm/Issue_Blog/issues/33)--2025-04-28
 - [基数估算（count-distinct problem）](https://github.com/WQhuanm/Issue_Blog/issues/31)--2025-04-15
 - [下次要是面试官还拷打我红黑树的实现，我就要掏出这个了！！！](https://github.com/WQhuanm/Issue_Blog/issues/15)--2025-03-13
