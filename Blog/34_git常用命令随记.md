@@ -67,3 +67,4 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
 1. git reset [--hard] HEAD :清空暂存区
     + --hard :将本地仓库回溯到最近一次提交
 
+1. git revert [commit-id] ：撤回指定commit-id的提交记录
