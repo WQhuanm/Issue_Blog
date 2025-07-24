@@ -2,7 +2,8 @@ name: Generate GitBlog README
 on:
   workflow_dispatch:
   issues:
-    types: [opened, edited]
+    types: [edited]
+    
   # issue_comment:
   #   types: [created, edited]
   push:
