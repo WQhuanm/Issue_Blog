@@ -3,10 +3,10 @@ title: Linux 常用命令
 date: 2025-07-07 12:53:39
 mathjax: true
 categories: 
-    - Linux
+    - CS基础
 tags: 
     - Linux
-cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910.png
+cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202507270023394.png
 ---
 
 
@@ -176,4 +176,5 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910
         + target-time 可以使用 @[时间戳] 指定，eg：date -d "@1704038400"
 
 1. export [环境变量名]：导出环境变量（当前进程及子进程均可访问）
+
 
