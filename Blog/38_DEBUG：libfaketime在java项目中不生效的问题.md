@@ -7,8 +7,7 @@ categories:
 tags: 
     - Java
     - Linux
-    - DEBUG
-cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910.png
+cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202506292029993.png
 ---
 
 
@@ -22,3 +21,4 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910
 1. 接着我在虚拟机上尝试复现服务器上的问题，发现jdk1.8和jdk11（虚拟机是11.0.23,服务器是11.0.6）在root和普通用户下libfaketime均能生效！
 1. 保险起见，我在服务器上使用C语言代码测试，发现faketime也能起效
 1. 这时几乎可以断定是jdk的问题了，升级到11.0.23即可
+
