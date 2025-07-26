@@ -3,12 +3,11 @@ title: Node.js 学习笔记
 date: 2025-07-24 09:23:56
 mathjax: true
 categories: 
-    - CS技术
+    - CS基础
 tags: 
-    - CS技术
-cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910.png
+    - Node.JS
+cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202507270022366.png
 ---
-
 
 
 ### JavaScript 基本语法
@@ -169,4 +168,5 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910
 [用了几年的Promise，竟然还搞不清楚返回值是什么～](https://juejin.cn/post/7196689993082978363#heading-3)  
 [JavaScript教程-廖雪峰](https://liaoxuefeng.com/books/javascript/introduction/index.html) 
 [Express 中文文档](https://www.expressrc.cn/)  
+
 
