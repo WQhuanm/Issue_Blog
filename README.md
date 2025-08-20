@@ -76,6 +76,10 @@
 </details>
 
 
+## DEBUG
+- [DEBUG：libfaketime在java项目中不生效的问题](https://github.com/WQhuanm/Issue_Blog/issues/38)--2025-06-23
+
+
 ## 项目管理
 - [docker常用镜像的部署配置](https://github.com/WQhuanm/Issue_Blog/issues/43)--2025-07-21
 - [配置ssh服务于免密登录](https://github.com/WQhuanm/Issue_Blog/issues/40)--2025-06-29
