@@ -276,6 +276,9 @@ def main(token, repo_name, issue_number=None, dir_name=BACKUP_DIR):
     me = user.get_user().login
     repo = user.get_repo(repo_name)
 
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+
     # add to readme one by one, change order here
     add_md_header(README_DIR, repo_name)
     for func in [add_md_todo,
