@@ -26,6 +26,6 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910
 
 1. Optional<T> ：用于判空处理(java.util.Optional)
     - Optional.ofNullable(obj) ：传入obj并封装为Optional<obj>, 如果obj为null，则获得一个空的Optional
-    - Optional.map( Function<T,U> ) ：以函数作为参数（其中函数的参数是Optional封装的类T），如果Optional不是空对象，则会调用该方法，并把结果封装为Optional<U>，否则返回一个空Optional
-    - Optional.flatmap( Function<T,Optional<U>> ) ：如果当前Optional不是空对象，则会调用该方法(要求方法返回值是Optional),因为不会再对结果进行Optional封装
+    - Optional.map( Function<T,U> ) ：以函数作为参数（其中函数的参数是Optional封装的类T），如果Optional不是空对象，则会调用该方法，并把结果封装为Optional\<U>，否则返回一个空Optional
+    - Optional.flatmap( Function<T,Optional\<U>> ) ：如果当前Optional不是空对象，则会调用该方法(要求方法返回值是Optional),因为不会再对结果进行Optional封装
     - Optional.orElse(T) ：获取Optional封装的对象，如果是空对象，则使用传入的参数作为返回值
