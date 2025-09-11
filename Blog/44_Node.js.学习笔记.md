@@ -20,7 +20,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202507270022366
 
 1. 数据类型
     + 基本类型
-        - String ：可使用'',"",` ` 来定义字符串，其中` `可使用${}引用变量
+        - String ：可使用'',"",\` \` 来定义字符串，其中\` \`可使用${}引用变量
         - Number ：包括整数/浮点数，范围是2^53
             - 大范围可使用BigNumber（数字末尾带n来区分，如1234n）
             - NaN (Not a Number) ：表示一个非法数字结果，且NaN不等于自身(使用isNaN()判断)
