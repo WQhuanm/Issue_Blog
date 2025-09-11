@@ -47,7 +47,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910
 - 流程
     - 通过位图(bitmap)来管理fd，fd的值对应其比特位（缺点是，位图大小有限（限制为1024），因此过多fd则无法管理）
         - 位图可分为3种，分别用于监听可读（socket连接accept，read读数据等）、可写、异常事件
-    - 每次调用select方法时，将位图拷贝到内核空间，轮询位图检测是否存在fd就绪事件：存在则把未就绪的fd位置0并返回，否则阻塞休眠等待数据就绪
+    - 每次调用select方法时，将位图拷贝到内核空间，轮询位图检测是否存在fd就绪事件：存在则把未就绪的fd位置置0并返回，否则阻塞休眠等待数据就绪
     - 当存在io事件把线程唤醒，或者超时唤醒，则再轮询一遍位图（因为不知道哪个fd就绪唤醒它）并标记返回
     - 将修改后的位图拷贝到用户空间，返回就绪的FD数量并切换为用户态
     - 线程遍历位图对就绪事件处理，然后开启新一轮select继续监听
@@ -63,6 +63,8 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910
     - 事件类型有多种(POLLIN、POLLOUT、POLLERR等)，各占一个bit位，可以同时监听多种事件（如POLLIN | POLLOUT）
     - poll函数步骤类似于select
 - 缺点 ：解决了fd监听数量有限的问题，但是拷贝和遍历整个数组的问题仍然存在
+
+
 ##### epoll
 - epoll_create方法 ：提供了一个eventpoll实例用于管理fd
     - 实例在内核创建和维护，避免了拷贝问题
