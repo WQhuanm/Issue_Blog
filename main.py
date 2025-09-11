@@ -232,7 +232,7 @@ def save_issue(issue, dir_name, me):
     #
 
     #the cover have default value,if you want to change,make sure the issue body's first line is ![](image_url) or change the following code 
-    with open(md_name, "a", encoding="utf-8") as f:
+    with open(md_name, "w", encoding="utf-8") as f:
         f.write("---\n")
         f.write(f"title: {issue.title}\n")
         f.write(f"date: {issue.created_at}\n")
