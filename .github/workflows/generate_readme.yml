@@ -39,6 +39,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git pull origin main
           git add Blog/*.md
           git commit -a -m 'update new blog' || echo "nothing to commit"
           git push || echo "nothing to push"
