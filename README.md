@@ -42,7 +42,7 @@
 - [笔试、笔试、笔试/(ㄒoㄒ)/~~](https://github.com/WQhuanm/Issue_Blog/issues/17)--2025-03-15
 - [字节国际电商一面(3.12)  --凉](https://github.com/WQhuanm/Issue_Blog/issues/16)--2025-03-14
 - [下次要是面试官还拷打我红黑树的实现，我就要掏出这个了！！！](https://github.com/WQhuanm/Issue_Blog/issues/15)--2025-03-13
-- [计算机基础学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/14)--2025-03-12
+- [os系统基本概念](https://github.com/WQhuanm/Issue_Blog/issues/14)--2025-03-12
 - [杭州视言一面（3.11）](https://github.com/WQhuanm/Issue_Blog/issues/13)--2025-03-11
 - [JVM(HotSpot虚拟机)学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/12)--2025-03-09
 - [终于要开始面试挑战了吗......有点意思😊](https://github.com/WQhuanm/Issue_Blog/issues/11)--2025-03-06
@@ -98,7 +98,7 @@
 - [Linux 常用命令](https://github.com/WQhuanm/Issue_Blog/issues/41)--2025-07-07
 <details><summary>显示更多</summary>
 
-- [计算机基础学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/14)--2025-03-12
+- [os系统基本概念](https://github.com/WQhuanm/Issue_Blog/issues/14)--2025-03-12
 - [JVM(HotSpot虚拟机)学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/12)--2025-03-09
 - [Java并发知识随记](https://github.com/WQhuanm/Issue_Blog/issues/9)--2025-02-27
 - [Java基础知识随记](https://github.com/WQhuanm/Issue_Blog/issues/8)--2025-02-26
