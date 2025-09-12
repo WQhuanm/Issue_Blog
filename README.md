@@ -52,7 +52,7 @@
 - [MySQL学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/7)--2025-02-21
 - [Mybatis编码随记](https://github.com/WQhuanm/Issue_Blog/issues/6)--2025-02-19
 - [SpringBoot项目配置文件模板](https://github.com/WQhuanm/Issue_Blog/issues/5)--2025-01-26
-- [redis三大主流问题及其解决方案](https://github.com/WQhuanm/Issue_Blog/issues/4)--2025-01-26
+- [网络分层模型及各层功能](https://github.com/WQhuanm/Issue_Blog/issues/4)--2025-01-26
 - [登录认证的几种基本方式](https://github.com/WQhuanm/Issue_Blog/issues/3)--2025-01-26
 - [使用Issue+Hexo搭建博客](https://github.com/WQhuanm/Issue_Blog/issues/2)--2024-12-23
 - [About me](https://github.com/WQhuanm/Issue_Blog/issues/1)--2024-12-22
@@ -76,7 +76,6 @@
 - [MySQL学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/7)--2025-02-21
 - [Mybatis编码随记](https://github.com/WQhuanm/Issue_Blog/issues/6)--2025-02-19
 - [SpringBoot项目配置文件模板](https://github.com/WQhuanm/Issue_Blog/issues/5)--2025-01-26
-- [redis三大主流问题及其解决方案](https://github.com/WQhuanm/Issue_Blog/issues/4)--2025-01-26
 - [登录认证的几种基本方式](https://github.com/WQhuanm/Issue_Blog/issues/3)--2025-01-26
 </details>
 
@@ -103,6 +102,7 @@
 - [JVM(HotSpot虚拟机)学习笔记](https://github.com/WQhuanm/Issue_Blog/issues/12)--2025-03-09
 - [Java并发知识随记](https://github.com/WQhuanm/Issue_Blog/issues/9)--2025-02-27
 - [Java基础知识随记](https://github.com/WQhuanm/Issue_Blog/issues/8)--2025-02-26
+- [网络分层模型及各层功能](https://github.com/WQhuanm/Issue_Blog/issues/4)--2025-01-26
 </details>
 
 
