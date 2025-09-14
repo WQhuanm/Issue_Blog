@@ -6,9 +6,8 @@ categories:
     - CS基础
 tags: 
     - Linux
-cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910.png
+cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509141037395.png
 ---
-
 
 
 
