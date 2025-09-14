@@ -7,7 +7,7 @@ categories:
 tags: 
     - Java
     - Linux
-cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202506292029993.png
+cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910.png
 ---
 
 
