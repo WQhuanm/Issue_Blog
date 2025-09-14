@@ -6,9 +6,8 @@ categories:
     - CS基础
 tags: 
     - Java
-cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910.png
+cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509141040515.jpg
 ---
-
 
 
 1. 函数式编程
