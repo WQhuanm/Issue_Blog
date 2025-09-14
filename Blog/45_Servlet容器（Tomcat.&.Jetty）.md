@@ -6,11 +6,9 @@ categories:
     - Web后端
 tags: 
     - Java
-cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202412222015910.png
+cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202507270024815.png
 ---
 
-
-![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202507270024815.png)
 
 ### Servlet
 1. servlet的作用 ：web请求的处理，底层通信协议是交给web server（比如http server）来进行。而具体的业务逻辑处理，则是交给servlet
