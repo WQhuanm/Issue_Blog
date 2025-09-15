@@ -203,7 +203,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502211226091
     + 数据页淘汰算法是改进过的最近最少使用 (Least Recently Used, LRU) 算法
         ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202502241332622.png)
         内存页由链表链起来，分为young和old区域，链表的LRU_OLD指针指向old区域开头    
-    + 新插入的数据放在old区域头部，如果短时间内被再次访问，才会转到young区域开头，否则还是在old区域开头
+    + 新插入的数据放在old区域头部，如果该数据页距离上次访问超过一定时间后（默认1s）再次被访问，才会转到young区域开头，否则还是在old区域开头
     + 这种方法保证了一定的内存命中率，防止全表扫描等大量冷数据涌入内存影响命中率
        
 
