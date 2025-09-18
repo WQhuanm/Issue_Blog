@@ -147,6 +147,7 @@ class Test {
         + 并发下put元素消失
         + get，put并发导致get为null，因为put导致扩容改位置了
 
+1. HashTable ：线程安全的hash表（主要通过synchronized锁住方法实现，锁粒度太大，性能差）
 
 1. ConcurrentHashMap
     + 加锁：基本是在桶上（table数组的一个结点）加Synchronized，变更操作则是unsafe的cas锁
