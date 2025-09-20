@@ -141,6 +141,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202507270023394
     + kill -l ：可查看不同数字对应的信号
     + -9 ：强制终止进程
     + -15 ：请求进程终止（默认）
+    + pkill -f [关键字] ：删除匹配关键字的所有进程
 
 ### 网络命令
 1. ifconfig	：查看网络接口配置
