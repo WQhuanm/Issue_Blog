@@ -46,6 +46,29 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
     };
     ```
 
+- 类型转换
+    - 类型转换的本质是值拷贝
+        - 如果是指针/引用的转换，则是把指针/引用指向内存中属于新类型的地址拷贝给新指针/引用
+        - 如果是对象类型转换（**对象切片**），则是把原本对象中属于新类型的那部分内存拿去给新类型执行拷贝构造函数（即vptr等都会改变）
+    - 四种类型转换
+        - `static_cast<T>(a)` ：把对象a转为**与a类型相关**的类型T
+            - 可以安全的将子类转为父类（会把指针指向父类在子类所属的内存区域）
+            - 在编译时进行类型转换，不会做运行时类型检查
+        - `dynamic_cast<T>(a)` ：**利用虚指针的机制**（所以被转换类型(即a)必须是**多态类**），可以在运行时实现父子类的安全转换
+            - dynamic_cast只能转换指针或引用
+                - 它的作用是确保指针/引用在运行时指向的内存一直都记录该内存的实际类型（虚函数表），使得类型操作时一直都是在同一片内存进行操作
+                - 而对象切片则会创建一个新对象，与原始对象脱钩
+            - 当执行向上类型转换时，实现同static_cast，编译时便类型转换
+            - 基类转派生类实现原理
+                - 虚函数表(vtable)还存储了**运行时类型信息（RTTI, Runtime Type Information）**，包含了该表所属类的信息和类层次结构
+                - 如果是向下转换，则会读取RTTI确定当前指针指向的内存实际类型是否允许转换为目标类型
+                    - 编译时期是无法判断一个基类指针指向哪个派生类的
+                    - 如果目标类型就是实际类型或者实际类型的基类，则允许转换
+                    - 否则如果是指针转换则返回`nullptr`；引用转换则抛出异常`std::bac_cast`
+        - `const_cast<T>(a)` ：不支持不同类型的转换，只是用于移除指针/引用的const修饰
+            - 不支持对对象转换，因为const本质修饰的是地址（对象转换则会进行拷贝构造了）
+        - `reinterpret_cast<T>(a)` ：以目标类型直接解读当前类型的内存。（因此，即使是派生类转换为基类都有可能出错）
+
 #### 指针和引用
 - 指针 (`T* p = &x`)
     - 指针p指向对象地址；(*p) 是解引用操作，用于得到对象本身
@@ -194,7 +217,9 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
 - 特殊成员函数 ：管理对象的生命周期和资源
     - 构造函数 ：构造函数允许隐式调用来转换。如class A有个只含int参数的构造函数时可以执行：`A a=10 `,会隐式改为 `A a= A(10)`
         - explicit修饰 ：禁止隐式转换
+        - 构造函数虽然没有返回值，但是可以抛出异常
     - 析构函数 ：在对象生命周期结束清理其占用的资源
+        - 析构函数不推荐抛出异常（函数也是被隐式声明为`noexcept`），而且析构被调用，有可能因为出现异常所以有对象被析构，析构函数再抛出则会存在双重异常，则异常传播变得复杂
     - 拷贝构造函数 ：将现有对象用于**创建**新对象。如 `MyClass b = a;` 或 `MyClass b(a);`，默认为浅拷贝
     - 拷贝赋值运算符 ：将现有对象赋值给**现有**对象。如`MyClass b; b=a;`（b前面进行过空初始化了，再使用a给他拷贝赋值）
     - 移动构造函数 ：参数接收右值引用，让**新对象**浅拷贝右值引用，并删除右值引用对其资源的指向
@@ -234,6 +259,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
 - 方法隐藏 ：派生类的函数会屏蔽所有与其同名的基类函数
 
 - 虚函数与方法重写
+    - 一个类只有包含或继承了虚函数，该类才被视为**多态类**
     - 使用virtual修饰类的非静态成员函数，则该函数可以被派生类重写(override)
         - 纯虚函数 ：只声明不实现，拥有纯虚函数的类为抽象类，无法被实例化
         ```cpp
@@ -380,8 +406,26 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
 - **自由存储区** ：C++通过new和delete来动态分配和释放对象的抽象内存区域
     - 一般编译器会用堆来实现，即使用malloc/free来实现`operator new`/`operator delete`
 
+- `operator new`与`new operator`
+    - `operator new` ：运算符函数`void* operator new(std::size_t)`
+        - cpp用于分配指定字节内存的函数（**只负责内存分配**）。成功返回指向内存的指针，分配失败会抛出异常`std::bad_alloc`
+        - 使用`operator new`分配的内存必须使用`operator delete`释放，因为使用`delete`等于使用`operator delete`+调用析构函数
+        - 布局new(`placement new`) ：对`operator new`的一种特殊重载，即`void* operator new(std::size_t, void* __p){return __p;}`
+            - 该方法用于使用**已存在的内存**来初始化对象 ：默认的new是分配内存后返回指向该内存的指针。而该方法接收现有内存的指针`__p`并直接返回该指针
+            - 直接调用该方法是没有意义的，因为没有调用构造函数 ：程序员是无法直接调用构造函数的，只能通过`new`关键字等方式触发。
+                - 比如new关键字的特殊语法 ：`MyClass* p=new(ptr)MyClass(arg);`。即指定了指向现有内存的指针
+                ```cpp
+                    void* ptr = operator new(sizeof(MyClass));
+                    //下述代码为编译器对MyClass* p=new(ptr)MyClass(arg);的解析
+                    MyClass* p= static_cast<MyClass*>(operator new(sizeof(MyClass),ptr));
+                    //把p作为this指针，调用构造函数对p指向的内存初始化
+                    p->MyClass::MyClass(arg);//
+                    return p;
+                ```
+    - `new operator` ：即我们的new关键字，实现上会先调用`operator new`分配对象内存，再对这片内存调用构造函数初始化（实现方式类似上面代码）
+
 - new和malloc的异同
-    - new不止会进行分配内存，还会再调用对象的构造函数进行初始化；delete时先调用析构函数，再释放内存
+    - new不止会进行分配内存(`operator new`)，还会再调用对象的构造函数进行初始化；delete时先调用析构函数，再释放内存
         - 如果是new数组`new int[num]`，则释放时应使用`delete[]`确保对每个元素都调用析构函数
     - new和malloc都支持延迟分配内存，即先申请，访问时（比如初始化）再分配内存页
         - new失败抛出异常`std::bad_alloc`
@@ -425,3 +469,4 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
 [【C++拾遗】 从内存布局看C++虚继承的实现原理](https://blog.csdn.net/xiejingfa/article/details/48028491)  
 [编程指北-cpp](https://csguide.cn/cpp/)  
 [std::enable_shared_from_this原理浅析](https://0cch.com/2020/08/05/something-about-enable_shared_from_this/)  
+[C++ 中 new 操作符内幕：new operator、operator new、placement new ](https://www.cnblogs.com/slgkaifa/p/6887887.html)  
