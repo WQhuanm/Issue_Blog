@@ -107,6 +107,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
     - 右值引用 ：对临时变量（右值）进行引用，用于后续实现移动语义。如`int&& a=get();`，a为右值引用，指向原本会立刻被销毁的内存
         - 右值引用是用于接收右值，但是右值引用这个变量本身是左值，离开作用域时才会消失
     - 万能引用 ：即模板`T&&`,接收左值时自动推导为左值引用，接收右值时自动推导为右值引用
+        - 完美转发(`std::forward<T>()`) ：将参数的**实际类型**转发给另一个函数（避免右值被具名变量持有时，转发到新函数变成左值等情况）
 
 #### 关键字
 - const
@@ -340,6 +341,31 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
         - 函数模板会生成具体的函数
         - 类模板会先生成具体类（编译器读取到模板类的成员函数的调用时才会对成员函数实例化）
     - 模板是编译时的工具，编译完成后就不存在了
+- 可变参数模板 ：`template<class... Args>void fun(Args... args)`，用于接收0或多个参数
+    - `Args`是类型参数包，是函数参数类型的集合（比如声明函数`fun(int,string,double)`,则`Args`等价于`(int,string,double)`）
+    - `args`是函数参数包，是函数各个参数类型的值（比如调用`fun(123,"123",1.23)`，则`args`等价于`(123,"123",1.23)`）
+    - 参数包的展开（参数包不能直接使用，必须被展开：`args...`会展开为`arg1,arg2,...argN`）
+        - 递归展开
+        ```cpp
+        void FormatPrint(){std::cout << std::endl;}//递归终止函数
+
+        template <class T, class ...Args>
+        void FormatPrint(T cur, Args... args)
+        {
+        std::cout << "[" << cur << "]";
+        FormatPrint(args...);//...表示将参数包展开为参数列表，否则参数包会被视为一个整体
+        }
+        ```
+        - 逗号表达式展开
+        ```cpp
+        template <class T>
+        void PrintArg(T t){cout << t << " ";}//处理每个参数的函数
+        template <class ...Args>
+        void ShowList(Args... args)
+        {
+            ((PrintArg(args)),...);//逗号表示会把args每个参数都拿去调用左侧函数
+        }
+        ```
 
 ### 内存管理
 #### RAII(resource Acquisition Is Initialization,资源获取即初始化)
@@ -467,6 +493,77 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
 - push_back与emplace_back
     - push_back(T& x) ：接收一个已存在对象,通过该对象进行拷贝/移动构造函数
     - empalce_back(Args&&... args) ：接收构造元素的参数并在vector内部构造元素
+
+- vector的简单实现
+
+    ```cpp
+    #include<iostream>
+
+    template<class T>
+    class MyVector{
+        private:
+        T* begin = nullptr;
+        T* end = nullptr;
+        T* capacity = nullptr;
+
+        public:
+        template<class... Args>
+        void emplace_back(Args&&... args){
+            if(end==capacity)reserve(capacity==begin?1:(capacity-begin)<<1);
+            new(end++)T(std::forward<Args>(args)...);
+        }
+        void pop_back(){
+            destroy(--end);
+        }
+        size_t size(){return end-begin}
+        void clear(){
+            while(end!=begin)destroy(--end);
+        }
+        void reserve(size_t n){
+            if(n<=capacity-begin)return;
+            T* new_begin = allocate(n);
+            for(T* p=begin, *np=new_begin;p!=end;++p,np++)construct(np,std::move(*p));
+            size_t sz=end-begin;
+            clear();
+            deallocate();
+            begin=new_begin,end=begin+sz,capacity=begin+n;
+        }
+
+        MyVector(size_t n=0){
+            if(n<=0)return;
+            begin=end=allocate(n);
+            capacity=begin+n;
+        }
+        ~MyVector(){
+            clear();
+            deallocate();
+            begin=end=capacity=nullptr;
+        }
+
+        T& operator[](size_t index){return begin[index];}
+
+        private:
+        //内存的分配/释放
+        T* allocate(size_t n){
+            if(!n)return nullptr;
+            void* ptr = ::operator new(n*sizeof(T));
+            return static_cast<T*>(ptr);
+        }
+        void deallocate(){
+            if(!begin)return;
+            ::operator delete(begin);
+        }
+        
+        //元素的构建/销毁
+        template<class... Args>//使用可变参数模板+万能引用接收传入的构造参数，再使用完美转发调用类型T相应的构造函数
+        void construct(T* p, Args&&... args){
+            new(p)T(std::forward<Args>(args)...);//使用placement new 使用现有内存p进行就地构造，
+        }
+        void destroy(T* p){
+            p->~T();
+        }
+    };
+    ```
 
 
 ### 参考文章
