@@ -483,6 +483,56 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
     - 链接静态库会把所需函数/变量的具体代码从静态库复制到可执行文件，运行时不再需要依赖静态库
     - 链接动态库会将库的相关信息记录到可执行文件。运行时os会将需要的动态库代码加载并链接到程序
 
+### 多线程
+#### std::thread
+- thread的构造 ：`std::thread(function,param1,param2,...)` ，第一个参数传入函数指针/函数名（或者lambda匿名函数，后续参数为传入函数的参数）
+    - thread对象一旦创建就立刻开始执行
+    - 由于thread构造函数对于参数是值拷贝，如果目标函数签名需要`&`引用参数，则需要使用`std::ref()`封装参数，如果是需要`const&`，则使用`std::cref()`封装
+- thred的销毁方式 ：必须指定，否则线程对象离开作用域时被销毁，而此时如果线程任务还未结束，则会出现异常
+    - `join()` ：主线程阻塞等待目标线程任务完成后将其资源回收
+    - `detach()` ：让新线程在后台运行，任务结束后自动回收其资源
+- `std::this_thread` ：命名空间，封装了对当前线程的一些操作
+    - `get_id()`：获取当前线程的唯一标识符
+    - `yield()`：**建议**调度器让出当前线程的cpu
+    - `sleep_for(std::chrono::seconds(2))` ：让当前线程休眠指定的时间
+    - `sleep_until()` ：让当前线程休眠直到指定的时间点
+- `thread_local` ：关键字，修饰变量 ：每个线程都会持有该变量自己的本地数据副本而不共享
+
+#### std::mutex 互斥锁
+- `std::mutex` ：最基本的互斥锁，不可重入，通过`lock(),unlock()`进行上锁/释放
+    - `std::recursive_mutex` : 可重入
+    - `std::time_mutex` ：允许在指定时间内尝试加锁
+    - `std::recursive_timed_mutex` ：可递归且带超时功能
+    - `std::shared_mutex` ：读写锁。允许多个线程同时读取，但在写入时排他锁定（不可重入，不能超时，非公平锁）
+- 锁管理器 ：本质是基于RAII管理锁。防止直接使用mutex时，因为unlock未正常执行最终造成死锁
+    - `std::lock_guard<T>(mutex)` ：构造时自动调用 `mutex.lock()`，析构时自动调用`mutex.unlock()`，不允许手动解锁
+        - 不能被拷贝，否则会出现锁被多次释放的情况
+    - `std::unique_lock<T>(mutex,tag)` ：可以延迟加锁（即构造时第二个参数传入`std::defer_lock`表示不立刻加锁），可以手动解锁
+
+#### std::condition_variable 条件变量 ：配合锁管理器实现线程间的等待和通知（wait and notify）
+-  `std::condition_variable` 必须于`std::unique_lock`结合使用，`std::condition_variable_any`可以和如何锁使用
+- `wait(std::unique_lock)` ：释放锁，线程阻塞，被唤醒时重新加锁
+    - 如果参数传入**谓词（Predicate）**，即返回bool的函数或表达式，谓词为true则不会执行wait，false则阻塞，被唤醒时检测为false会再次阻塞
+- `notify_one()` ：随机唤醒一个wait的线程
+
+#### std::atmoic<T> 提供线程安全的原子操作，同时保证该操作的内存顺序（避免指令重排）
+- 修饰基本类型时，相应操作是无锁原子的；如果修饰复杂类型，内部还是会**使用锁**来保证原子性(可以使用`is_lock_free()`检测)
+    - 原子操作如 `load(),store(T),exchange(T),compare_exchange_strong/weak()`等读，写，交换，比较交换操作
+- `compare_exchange_strong/weak(T& expected, T desired, ...)` 
+    - weak和strong 都是cas操作，cas成功则对象被更新为desired目标值；失败则把expected更新为当前值
+    - weak使用更为简单的指令，性能高，但是存在**虚假失败**（当前值与预期值一致，但是因为指令执行失败，线程切换等硬件或系统情况返回false），因此需要在配合循环使用
+    - strong 内部失败会循环重试，避免**虚假失败**的情况，性能更低
+
+#### std::future<T> ：提供了异步操作的封装
+- `std::future<T>` ：封装异步任务的结果，最终可获得返回结果或是任务抛出的异常
+    - `get()` ：调用时阻塞等待任务结束并获取结果
+        - `std::future<T>`只能被移动，不能被拷贝，并且只能`get()`一次
+    - `shared()` ：调用后返回`std::shared_future`，该future支持被复制，支持多次get
+- `std::promise<T>` ：用于手动提供`std::future`，只能被移动，不能被拷贝
+    - 通过`get_future()`方法创建一个关联的`std::future<T>`对象。后续把promise移动给任务函数后，可以通过关联的future来获取任务函数对promise设置的值
+    - `set_value()、set_exception()` ：promise用于设置结果/异常，future调用get时可以接收到
+- `std::async()` ：异步执行函数，会自动创建一个线程在后台执行任务，返回一个`std::future`（本质是内部对promise进行了封装） 
+
 ### STL库
 #### vector ：动态数组（通过静态数组+扩容机制实现）
 - 扩容机制
