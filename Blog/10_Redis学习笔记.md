@@ -108,11 +108,16 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202501262318741
         1. 提前预热，并让特定场景key在场景结束前不过期
             
 
-### 常用数据结构及其底层数据
-1. redis-zset：使用跳表实现
+### 五种基本value类型（key都是string）
+- string ：（底层使用**Simple Dynamic String (SDS)**，简单动态字符串实现，会预分配一段内存来存储字符串）
+- hash ：哈希表，用于存储对象等，内部可容纳多个key-value，减少了redis的key数量
+- list
+- set
+- z-set ：使用跳表实现
     ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503262038882.png)
 
-1. HyperLogLog：基数估算（标准误算率是 0.81%）
+### 常用数据结构及其底层数据
+- HyperLogLog：基数估算（标准误算率是 0.81%）
     > 具体算法可参考：[基数估算（count-distinct problem）](https://wqhuanm.github.io/Issue_Blog/2025/04/14/31_%E5%9F%BA%E6%95%B0%E4%BC%B0%E7%AE%97%EF%BC%88count-distinct.problem%EF%BC%89/)
 
     + 一个键占用12kb（64位，前14位划分桶，每个桶需要6bit（2^6>50）计算桶value, 合计占用 (2^14 B) *6bit =12kb）
