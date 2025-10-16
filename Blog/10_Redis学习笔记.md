@@ -108,13 +108,18 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202501262318741
         1. 提前预热，并让特定场景key在场景结束前不过期
             
 
-### 五种基本value类型（key都是string）
+### 五种基本value类型（key都是string，value的基本元素也是string）
 - string ：（底层使用**Simple Dynamic String (SDS)**，简单动态字符串实现，会预分配一段内存来存储字符串）
+    - 常用命令 ：`SET key value`,`GET key`,`MSET key1 val1 key2 val2`（批量设置）
 - hash ：哈希表，用于存储对象等，内部可容纳多个key-value，减少了redis的key数量
+    - 常用命令 ：`HSET key field value`,`HGET key field`,`HGETALL key`,`HMSET key field1 v1`(批量设置)
 - list
+    - 常用命令 ：`LPUSH/RPUSH key value`,`LPOP/RPOP key`,`LRANGE/RRANGE key start stop` (获取范围内的元素)
 - set
+    - 常用命令 ：`SADD key val`,`SMEMBERS key`(获取所有元素),`SISMEMBER key val`(判断元素是否存在),`SREM key val`(移除元素),`SUNION/SINTER/SDIFF`(集合运算)
 - z-set ：使用跳表实现
     ![](https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503262038882.png)
+    - 常用命令 ：`ZADD key score val`,`ZRANGE/ZREVRANGE key start stop [WITHSCORES]` (按索引范围升序/降序获取),`ZRANGEBYSCORE key min max`(按分数范围获取),`ZSCORE key val`(获取元素的分数)
 
 ### 常用数据结构及其底层数据
 - HyperLogLog：基数估算（标准误算率是 0.81%）
