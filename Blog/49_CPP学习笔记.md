@@ -31,8 +31,12 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
         - 如果声明的char数组没有留有空间给'\0'，则上述方法执行可能出现异常（会执行到'\0'为止）
 
 - 函数
-    - 函数参数可不带变量名，如果该参数无需使用，只声明参数类型即可,如`void f(int* ){}`
-    - 函数默认参数值是**静态绑定**的(如`void fun(int a=10){}`，默认a=10)
+    - **函数类型 (Function Type)** ：由返回值+参数列表组成（如`void(int,double)`）
+        - 函数声明即函数名+函数类型（即参数无需有变量名，如`void fun(int* ){}`）
+        - 函数类型类似于对象类型 ：函数指针（如`void(*ptr)())`）、`std::function`对象（如`std::function<void()> fun`）等均使用函数类型来修饰函数
+    - **函数签名 (Function Signature)** ：用于唯一标识函数，由函数名+参数列表组成(**无返回值**)
+        - 2个函数只有返回值不同，即函数签名相同则编译异常
+    - 函数调用时的参数值都是编译时**静态绑定**的(包括默认参数，如`void fun(int a=10){}`，默认a=10)
         - 对于虚函数存在影响 ：父类指针指向子类时，调用虚函数会在运行时查找实际函数。但是对于函数调用的参数，使用的是**当前类型**对应方法的参数值，避免了参数值也需要动态查找
 
 - sizeof ：C++ 编译期间计算的操作符，用于计算数据类型或对象所占用的字节数
@@ -114,7 +118,9 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
 #### 关键字
 - const
     - 修饰成员方法 ：表示执行该函数不会修改对象的成员变量
-        - const方法/const对象 只能调用const成员方法
+        - 只能保证**表层不变性**，如果成员是指针/引用，其指向的实际内存还是可以被修改的
+        - 使用``mutable``关键字修饰的成员变量可以在const方法中被修改
+    - const方法/const对象 只能调用const成员方法
     ```cpp
     class A {
         public:
@@ -370,6 +376,30 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
         }
         ```
 
+#### 函数相关
+- 函数对象（Functor） ：即重载了`operator()`的类的对象
+    - 本身还是对象，相较于普通函数，可以有成员变量来记录状态
+- **lambda表达式(`[capture-list](parameter-list){ body }`)**
+    - 用来创建匿名函数对象,编译器会根据表达式生成相应的匿名类（该类根据表达式的`body`重载`operator()`），表达式的结果就是该匿名类的一个对象
+    - 捕获列表(capture-list) ：将外部作用域的变量引入lambda内部作为成员变量，或自定义初始化的成员变量
+        - `[]`, `[=]`, `[&]` 分别表示不捕获、默认值拷贝/引用**所有用到的**外部变量
+        - `[x]`, `[&x]`,`[p=A()]` 分别表示值拷贝外部变量x、引用外部变量x、初始化类A的对象p作为成员变量
+        - `[this]`捕获，成员函数内部使用lambda时，this捕获可以获取当前对象的this指针
+        - 无捕获值时，可退化为函数，使用相应的函数指针接收；否则只能使用auto接收这个匿名类对象（因为有成员变量）
+        - 重载的`operator()`实际是`operator()const{}`,因此捕获值默认是只读的（除了引用的捕获值，因为本质是指针）
+            - 可以使用`mutable`修饰lambda使得所有成员变量都是可修改的(如`[]()mutable{}`)
+    - 参数列表(parameter-list) ：接收函数参数（类型可为auto），无参可省略
+
+- **可调用对象(Callable Object)**
+    - 所有可以应用函数调用操作符`()`的实体都可视为可调用对象，如函数、函数指针、函数对象、lambda表达式生成的对象、`std::function`对象等
+    - 可调用对象可以使用**模板参数**或`std::function<T>`接收
+
+- `std::function<T>` ：用于统一封装**可调用对象**,T指定封装的**函数类型**
+    - 我们可以使用lambda或`std::bind()`将不同的函数类型转换为统一的函数类型给`std::function`封装，如下
+        - `std::function<void()> fun = std::bind(some_function, arg1, arg2);`
+        - `std::function<void()> fun = [arg1,arg2](){some_function(arg1,arg2);};`
+
+
 ### 内存管理
 #### RAII(resource Acquisition Is Initialization,资源获取即初始化)
 - 思想 ：将资源的生命周期与某个对象的生命周期绑定
@@ -515,7 +545,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
 #### std::condition_variable 条件变量 ：配合锁管理器实现线程间的等待和通知（wait and notify）
 -  `std::condition_variable` 必须于`std::unique_lock`结合使用，`std::condition_variable_any`可以和如何锁使用
 - `wait(std::unique_lock)` ：释放锁，线程阻塞，被唤醒时重新加锁
-    - 如果参数传入**谓词（Predicate）**，即返回bool的函数或表达式，谓词为true则不会执行wait，false则阻塞，被唤醒时检测为false会再次阻塞
+    - 如果参数传入返回值为bool的**可调用对象**，为true则不会执行wait，false则阻塞，被唤醒时检测为false会再次阻塞
 - `notify_one()` ：随机唤醒一个wait的线程
 
 #### std::atmoic<T> 提供线程安全的原子操作，同时保证该操作的内存顺序（避免指令重排）
@@ -536,7 +566,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202509261428721
     - `set_value()、set_exception()` ：promise用于设置结果/异常，future调用get时可以接收到
 - `std::async()` ：异步执行函数，会自动创建一个线程在后台执行任务，返回一个`std::future`（本质是内部对promise进行了封装） 
 
-### STL库
+### STL常见容器
 #### vector ：动态数组（通过静态数组+扩容机制实现）
 - 扩容机制
     - 内部会维护当前元素数量`size()`和容器容量大小`capacity()`
