@@ -139,6 +139,10 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202501262318741
     - 常用命令 ：`SET key value`,`GET key`,`MSET key1 val1 key2 val2`（批量设置）
 - hash ：哈希表，用于存储对象等，内部可容纳多个key-value，减少了redis的key数量
     - 常用命令 ：`HSET key field value`,`HGET key field`,`HGETALL key`,`HMSET key field1 v1`(批量设置)
+    - 扩容（渐进式rehash）
+        - redis需要扩容时，会开辟一张新的hash表，每次操作该hash表时，都会把旧表的部分为迁移元素进行迁移
+        - 扩容期间，数据操作在2个表上进行（但新数据只会放到新表）
+        - 多次迁移完成后，释放旧表（避免单次扩容阻塞单线程redis）
 - list
     - 常用命令 ：`LPUSH/RPUSH key value`,`LPOP/RPOP key`,`LRANGE/RRANGE key start stop` (获取范围内的元素)
 - set
