@@ -20,7 +20,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503142114954
 
 1. 我原本自作聪明的认为节点只需要记录所属term是否投票即可，无需记录投票给谁，这是我当时对votedfor的理解  
     - 所以当时的策略是votedFor是bool变量，加锁控制term更新时对votedfor的重置
-1. 我认为每个peer节点，只要接收到的RPC请求/响应结果携带的term比自身大，就应该立刻将自身term更新为对方更大的term（同时执行相应的切换策略）
+1. 我认为每个peer节点，**只要接收到的RPC请求/响应结果携带的term比自身大**，就应该立刻将自身term更新为对方更大的term（同时执行相应的切换策略）
 
 
 正是上述误区产生如下BUG：
@@ -50,6 +50,6 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202503142114954
 
 1. 发起选举时，记录自身当前的term（选举时使用的term）
     - 如果投票通过后，发现自身当前的term和选举term不一致，则不进入leader
-2. 投票者如果成功进行投票，则更新自己的心跳，避免快速发起选举干扰他人
-3. votedfor改为：记录其投票过的最大term（这应该才是真正的含有），votedfor做出承诺，不会向低于或等于当前投票的term的请求进行投票
-4. 投票请求不会更新接收者的term，term只会在日志同步时，leader向follower同步
+1. votedfor改为：记录其投票过的最大term（这应该才是真正的含义），votedfor做出承诺，不会向低于或等于当前投票的term的请求进行投票
+1. 在成功向对方投票时才尝试更新自身term（不满足要求的投票请求，不应该用来更新term）
+1. term的更新需要获取锁，leaderinit时也要获取该锁避免term更新，这样term更新时，如果是leader，才能降级为follower
