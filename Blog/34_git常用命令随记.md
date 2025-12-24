@@ -32,6 +32,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
     + add . :把所有已修改文件添加到暂存区
 
 1. git commit -m "message" :将暂存区的更改提交到本地仓库，并添加提交信息
+    + --amend ：补充上一个commit
 
 1. git fetch :获取远程仓库的最新数据，但不修改本地分支
 
