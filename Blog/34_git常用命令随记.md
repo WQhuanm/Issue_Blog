@@ -22,6 +22,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
     + -d [branch_name]：删除本地分支
     + -m [old_branch_name] [new_branch_name]: 更改本地分支名
     + -vv ：列出所有本地分支及其跟踪的远程分支
+    + --set-upstream-to=[远程仓库]/[远程分支] ：设置当前分支对应的远程分支
 
 1. git init :初始本地仓库
 
