@@ -52,6 +52,8 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
 
 
 ### 文件/提交 tips
+1. git stash -u ：暂存本地所有未提交修改并恢复本地到上一个提交
+
 1. git restore [--staged] [filename] :将指定文件恢复到暂存区/最新提交的状态
     + 上述命令的旧版写法是：git checkout -- [filename]
     + --staged :可选，将指定文件在暂存区的缓存删除
