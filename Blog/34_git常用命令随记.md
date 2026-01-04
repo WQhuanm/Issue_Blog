@@ -42,6 +42,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
 1. git push [远程仓库名] [分支名] :将本地提交推送到远程仓库
     + -u :推送同时将本地分支追踪仓库改为此远程仓库
     + --delete ：删除远程分支
+    + git push --force-with-lease ponyai HEAD:[remote branch] ：强行推送本地提交到远程
 
 ### 本地，远程分支间的交互
 1. git status :显示当前所在本地分支，以及其追踪的远程分支
