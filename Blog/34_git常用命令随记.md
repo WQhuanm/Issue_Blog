@@ -45,6 +45,8 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
 
 ### 文件提交流程
 
+> 可以先 git rebase 刷新当前分支起点（避免本地历史 commit 影响）
+
 1. git add [filename] :对指定文件添加到暂存区
 
    - . :把所有已修改文件添加到暂存区
@@ -68,6 +70,10 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
    - -u ：未跟踪文件的修改也进行暂存
    - pop ：恢复暂存改动到工作区并从栈删除该暂存条目
    - apply ：恢复暂存改动到工作区，但不从栈删除该暂存条目
+
+1. git cherry-pick <commit-sha> ：挑选某些 commit 加入到当前分支
+
+   - -n ：只应用所选 commit 产生的改动，但不应用为当前分支的 commit
 
 1. git restore [filename] :将指定文件恢复到暂存区/最新提交的状态
 
