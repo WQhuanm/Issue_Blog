@@ -62,6 +62,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
 1. git push `<repo> <branch>` :将本地提交推送到远程仓库
    - -u :推送同时将本地分支追踪仓库改为此远程仓库
    - --delete ：删除远程分支
+   - --force-with-lease  ：安全强制推送
 
 ### 本地文件操作
 
