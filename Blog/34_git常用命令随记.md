@@ -58,6 +58,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
 1. git fetch : 获取所有远程分支最新数据
 
 1. git pull `<repo> <branch>` :从远程获取最新提交并尝试合并本地版本
+   - --rebase ：如果拉取时，本地commit和远程有冲突，把本地提交迁移到后方，避免出现merge
 
 1. git push `<repo> <branch>` :将本地提交推送到远程仓库
    - -u :推送同时将本地分支追踪仓库改为此远程仓库
