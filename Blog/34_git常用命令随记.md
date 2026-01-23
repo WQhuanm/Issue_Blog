@@ -92,7 +92,7 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
      - fixup：将当前提交与前一个提交合并，不保留提交信息
      - drop：删除提交
 
-1. git reset HEAD :清空暂存区
+1. git reset HEAD/[commitId] :把分支状态回溯到某一提交
 
    - --hard :将本地仓库回溯到最近一次提交
 
