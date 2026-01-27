@@ -92,8 +92,13 @@ cover: https://gcore.jsdelivr.net/gh/WQhuanm/Img_repo_1@main/img/202505270031578
      - fixup：将当前提交与前一个提交合并，不保留提交信息
      - drop：删除提交
 
-1. git reset HEAD/[commitId] :把分支状态回溯到某一提交
+1. git reset HEAD :清空暂存区
 
    - --hard :将本地仓库回溯到最近一次提交
 
 1. git revert [commit-id] ：撤回指定 commit-id 的提交记录
+
+1. git reflog ：记录本地的引用变更(用于找回遗失的工作区状态（包括当时的git stash暂存记录）)
+   - --date=iso ：日志显示时间戳
+   - 查找到目的的状态hash，使用该hash来临时创建一个新分支`git checkout -b tmp <hashid>`
+   - 执行`git reflog stash --date=relative`该状态下的stash栈记录
