@@ -26,4 +26,8 @@ docker run -itd --name rabbitmq -p 5672:5672 -p 15672:15672 -v rabbitmq_data:/va
 # zookeeper
 docker pull zookeeper
 docker run -itd --name zookeeper -p 2181:2181 zookeeper -v zookeeper_data:/var/lib/zookeeper  zookeeper
+
+# mysql
+docker pull mysql:8.0
+docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 -v mysql_data:/var/lib/mysql mysql:8.0
 ```
